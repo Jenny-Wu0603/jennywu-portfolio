@@ -125,19 +125,23 @@
   }
 
   /* ===== Highlight videos (no phone frame) ===== */
-  .sec-wrap { max-width: 1160px; margin: 0 auto; padding: 20px 40px 10px; }
-  .hl-grid { display: flex; gap: 28px; justify-content: flex-start; margin-top: 8px; flex-wrap: wrap; }
-  .hl-unit { display: flex; flex-direction: column; align-items: center; }
+  /* Positions and sizes mirror the phones baked into dome_food.jpg (1440px wide, phones 201x355, first at x=140, last ending at x=1305) */
+  .sec-wrap { max-width: 1440px; margin: 0 auto; padding: 20px 0 10px; }
+  .sec-wrap > * { margin-left: 9.722%; margin-right: 9.375%; }
+  .hl-grid { display: flex; justify-content: space-between; margin-top: 8px; }
+  .hl-unit { display: flex; flex-direction: column; align-items: center; width: 17.253%; }
   .hl-grid video {
-    height: 320px; width: auto; border-radius: 16px; cursor: pointer;
+    display: block; width: 100%; height: auto; aspect-ratio: 201 / 355; object-fit: cover;
+    border-radius: 16px; cursor: pointer;
     box-shadow: 0 10px 32px rgba(33,29,23,.15);
     transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
   }
   .hl-grid video:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(33,29,23,.2); }
-  .hl-cap { margin-top: 18px; font-size: 15px; font-weight: 600; text-align: center; max-width: 200px; line-height: 1.5; }
+  .hl-cap { margin-top: 18px; font-size: 15px; font-weight: 600; text-align: center; line-height: 1.5; }
   @media (max-width: 700px) {
-    .hl-grid video { height: 280px; }
-    .hl-grid { gap: 20px; justify-content: center; }
+    .sec-wrap > * { margin-left: 20px; margin-right: 20px; }
+    .hl-grid { flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .hl-unit { width: calc(50% - 10px); }
   }
 
   .cta { text-align: center; padding: 120px 40px 100px; }

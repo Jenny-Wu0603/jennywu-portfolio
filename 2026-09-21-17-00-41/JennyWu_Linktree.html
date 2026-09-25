@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jenny Wu · Social Media & Content Marketing</title>
+<style>
+  :root {
+    --cream: #F7F2EA;
+    --ink: #3D3A34;
+    --muted: #8A8578;
+    --accent: #A9714B;
+    --card: #FFFFFF;
+    --line: #E8E2D6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--cream);
+    font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+  .page {
+    width: 100%;
+    max-width: 420px;
+    padding: 48px 24px 32px;
+  }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 32px; }
+  .avatar {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    letter-spacing: 1px;
+  }
+  .name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .tagline {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .location {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  /* Links */
+  .links { display: flex; flex-direction: column; gap: 12px; }
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform .12s ease, border-color .12s ease;
+  }
+  .link-card:active { transform: scale(.98); }
+  @media (hover: hover) {
+    .link-card:hover { border-color: var(--accent); }
+  }
+  .link-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .link-text { flex: 1; min-width: 0; }
+  .link-title { font-size: 15px; font-weight: 600; }
+  .link-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .link-arrow { color: var(--muted); font-size: 16px; flex-shrink: 0; }
+
+  /* Highlight card */
+  .link-card.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .link-card.primary .link-title,
+  .link-card.primary .link-sub,
+  .link-card.primary .link-arrow { color: #fff; }
+  .link-card.primary .link-icon { background: rgba(255,255,255,.18); }
+
+  /* Footer */
+  .footer {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+  <main class="page">
+
+    <div class="header">
+      <div class="avatar">JW</div>
+      <h1 class="name">JENNY WU</h1>
+      <p class="tagline">Social Media & Content Marketing<br>海外品牌增长 · 3 年经验</p>
+      <p class="location">深圳 · 中英双语 · 北美市场母语级英文文案</p>
+    </div>
+
+    <nav class="links">
+
+      <a class="link-card primary" href="./JennyWu_CV_VIVAIA_v2.docx">
+        <div class="link-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="link-text">
+          <div class="link-title">下载简历 CV</div>
+          <div class="link-sub">中英双语 · Updated Sep 2026</div>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="mailto:13714452571@163.com">
+        <div class="link-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A9714B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        </div>
+        <div class="link-text">
+          <div class="link-title">Email 联系我</div>
+          <div class="link-sub">13714452571@163.com</div>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="#" onclick="return false">
+        <div class="link-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A9714B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div class="link-text">
+          <div class="link-title">LinkedIn</div>
+          <div class="link-sub">linkedin.com/in/jennywu · 待替换</div>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="#" onclick="return false">
+        <div class="link-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A9714B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>
+        </div>
+        <div class="link-text">
+          <div class="link-title">作品集 Portfolio</div>
+          <div class="link-sub">品牌案例 · 达人战役 · 投放数据</div>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="https://instagram.com/musekey.kid" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A9714B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div class="link-text">
+          <div class="link-title">Instagram</div>
+          <div class="link-sub">@musekey.kid · 品牌在营账号</div>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a class="link-card" href="#" onclick="return false">
+        <div class="link-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A9714B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="link-text">
+          <div class="link-title">个人 Profile 长页</div>
+          <div class="link-sub">完整经历 · 数据与方法论</div>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+    </nav>
+
+    <footer class="footer">
+      <p>Play · Create · Keep</p>
+      <p>Jenny Wu · 2026</p>
+    </footer>
+
+  </main>
+</body>
+</html>

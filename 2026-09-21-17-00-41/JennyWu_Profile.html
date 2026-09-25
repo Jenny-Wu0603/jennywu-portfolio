@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jingyi Wu 巫婧怡 — Personal Profile</title>
+<style>
+  :root{
+    --cream:#F7F2EA;
+    --cream-deep:#F1E9DC;
+    --ink:#2B2622;
+    --ink-soft:#5C554D;
+    --taupe:#8B6F4E;
+    --clay:#B5623F;
+    --hairline:#D9CDBB;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"Helvetica Neue",Helvetica,"PingFang SC","Microsoft YaHei",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  .serif{font-family:"Playfair Display","Cormorant Garamond",Georgia,"Songti SC","STSong",serif;}
+  .page{max-width:920px;margin:0 auto;padding:0 48px;}
+
+  /* ---------- hero ---------- */
+  .hero{padding:88px 0 64px;border-bottom:1px solid var(--hairline);}
+  .kicker{
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--taupe);margin-bottom:28px;
+    display:flex;align-items:center;gap:16px;
+  }
+  .kicker::after{content:"";flex:1;height:1px;background:var(--hairline);}
+  h1.name{
+    font-size:clamp(44px,7vw,72px);font-weight:500;line-height:1.05;
+    letter-spacing:-.01em;
+  }
+  h1.name .cn{display:block;font-size:.42em;letter-spacing:.5em;color:var(--taupe);margin-top:14px;font-weight:400;}
+  .role{
+    margin-top:26px;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  .role em{font-style:normal;color:var(--clay);}
+  .intro{
+    margin-top:34px;max-width:640px;font-size:16.5px;line-height:1.9;color:var(--ink-soft);
+  }
+  .intro strong{color:var(--ink);font-weight:600;}
+  .contact{
+    margin-top:36px;display:flex;flex-wrap:wrap;gap:10px 34px;
+    font-size:12.5px;letter-spacing:.06em;color:var(--ink-soft);
+  }
+  .contact span b{color:var(--taupe);font-weight:600;letter-spacing:.14em;margin-right:8px;font-size:10.5px;text-transform:uppercase;}
+
+  /* ---------- numbers ---------- */
+  .numbers{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:1px;background:var(--hairline);
+    border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+  }
+  .num{background:var(--cream);padding:40px 24px 36px;}
+  .num .v{font-size:clamp(30px,4vw,44px);font-weight:500;line-height:1;}
+  .num .v small{font-size:.5em;color:var(--clay);}
+  .num .l{margin-top:12px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe);}
+  .num .d{margin-top:6px;font-size:12.5px;color:var(--ink-soft);}
+
+  /* ---------- quote ---------- */
+  .quote{padding:88px 0;text-align:center;border-bottom:1px solid var(--hairline);}
+  .quote p{
+    font-size:clamp(22px,3.4vw,30px);line-height:1.65;font-weight:400;
+    max-width:700px;margin:0 auto;
+  }
+  .quote p em{font-style:italic;color:var(--clay);}
+  .quote .cn-sub{margin-top:22px;font-size:13.5px;letter-spacing:.3em;color:var(--taupe);}
+
+  /* ---------- section head ---------- */
+  section.block{padding:72px 0 64px;border-bottom:1px solid var(--hairline);}
+  .sec-head{display:flex;align-items:baseline;gap:20px;margin-bottom:48px;}
+  .sec-head .no{font-size:13px;letter-spacing:.2em;color:var(--clay);}
+  .sec-head h2{font-size:clamp(26px,4vw,34px);font-weight:500;letter-spacing:.01em;}
+  .sec-head .cn{font-size:13px;letter-spacing:.4em;color:var(--taupe);margin-left:auto;}
+
+  /* ---------- cases ---------- */
+  .case{display:grid;grid-template-columns:64px 1fr;gap:28px;padding:36px 0;}
+  .case + .case{border-top:1px solid var(--hairline);}
+  .case .idx{font-size:15px;color:var(--clay);padding-top:6px;letter-spacing:.1em;}
+  .case h3{font-size:22px;font-weight:500;line-height:1.3;}
+  .case h3 .tag{
+    display:inline-block;vertical-align:middle;margin-left:14px;
+    font-family:"Helvetica Neue",Helvetica,"PingFang SC",sans-serif;
+    font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe);
+    border:1px solid var(--hairline);border-radius:999px;padding:4px 12px;transform:translateY(-3px);
+  }
+  .case .meta{margin-top:6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);}
+  .case p{margin-top:16px;font-size:14.5px;line-height:1.85;color:var(--ink-soft);max-width:640px;}
+  .chips{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    font-size:12px;padding:7px 14px;border-radius:999px;background:var(--cream-deep);
+    color:var(--ink);letter-spacing:.02em;
+  }
+  .chip b{color:var(--clay);font-weight:600;}
+
+  /* ---------- creators ---------- */
+  .creators{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline);}
+  .creator{background:var(--cream);padding:26px 22px;}
+  .creator .h{font-size:13px;font-weight:600;letter-spacing:.04em;}
+  .creator .pf{margin-top:4px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);}
+  .creator .m{margin-top:14px;font-size:22px;font-weight:500;}
+  .creator .m small{font-size:.55em;color:var(--clay);}
+  .creator .ml{margin-top:4px;font-size:11.5px;color:var(--ink-soft);line-height:1.5;}
+
+  /* ---------- method ---------- */
+  .methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;}
+  .method .step{font-size:12px;letter-spacing:.24em;color:var(--clay);text-transform:uppercase;}
+  .method h4{font-size:19px;font-weight:500;margin-top:10px;}
+  .method .cn{font-size:12px;color:var(--taupe);letter-spacing:.2em;margin-top:2px;}
+  .method p{margin-top:12px;font-size:13.5px;line-height:1.8;color:var(--ink-soft);}
+
+  /* ---------- footer ---------- */
+  footer{padding:64px 0 88px;text-align:center;}
+  footer .big{font-size:clamp(24px,3.6vw,32px);font-weight:500;}
+  footer .row{margin-top:20px;font-size:12.5px;letter-spacing:.1em;color:var(--ink-soft);}
+  footer .cn-tag{margin-top:14px;font-size:11px;letter-spacing:.5em;color:var(--taupe);}
+
+  @media (max-width:640px){
+    .page{padding:0 24px;}
+    .case{grid-template-columns:1fr;gap:10px;}
+  }
+  @media print{
+    body{background:#fff;}
+    .page{max-width:100%;padding:0 12mm;}
+    section.block,.hero,.quote{page-break-inside:avoid;}
+    @page{size:A4;margin:14mm 8mm;}
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="kicker">Personal Profile · 个人档案 · 2026</div>
+    <h1 class="name serif">Jingyi Wu<span class="cn">巫 婧 怡</span></h1>
+    <div class="role">Social Media &amp; Brand Marketing — <em>Global Lifestyle &amp; DTC Brands</em></div>
+    <p class="intro">
+      3+ years building overseas brands <strong>from zero to one</strong> — across premium F&amp;B lifestyle,
+      North America DTC hardware and AI consumer products. A <strong>Visual Communication Design</strong> graduate
+      who speaks both languages of modern marketing: <strong>brand aesthetics</strong> and <strong>performance data</strong>.
+      I build Instagram-first content ecosystems, creator networks that out-perform category benchmarks,
+      and AI-augmented production pipelines that make beauty scalable.
+      <br><br>
+      视觉传达设计出身，3 年以上海外品牌 0→1 增长实战。我相信好的品牌内容既要有审美的高度，也要有数据的刻度。
+    </p>
+    <div class="contact">
+      <span><b>Base</b>Shenzhen, China</span>
+      <span><b>Tel</b>137 1445 2571</span>
+      <span><b>Mail</b>13714452571@163.com</span>
+      <span><b>Languages</b>中文母语 · English (full professional)</span>
+    </div>
+  </div>
+
+  <!-- NUMBERS -->
+  <div class="numbers">
+    <div class="num"><div class="v serif">700K<small>+</small></div><div class="l">Brand Exposure</div><div class="d">6 个月新品牌 0→1 累计曝光</div></div>
+    <div class="num"><div class="v serif">1.43</div><div class="l">Campaign ROI</div><div class="d">跨年夜达人战役直接 ROI</div></div>
+    <div class="num"><div class="v serif">4<small>×</small></div><div class="l">Benchmark ER</div><div class="d">达人互动率超家居行业基准 4 倍</div></div>
+    <div class="num"><div class="v serif">4.14</div><div class="l">Social Ads ROI</div><div class="d">黑五–圣诞购物季投放回报</div></div>
+    <div class="num"><div class="v serif">$2.2</div><div class="l">Blended CPL</div><div class="d">Meta 线索广告首轮基线成本</div></div>
+    <div class="num"><div class="v serif">+35<small>%</small></div><div class="l">Foot Traffic</div><div class="d">内容驱动到店客流增长</div></div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote serif">
+    <p>“Users never study your product —<br>great content <em>lowers the threshold of understanding</em>,<br>and turns aesthetics into trust.”</p>
+    <div class="cn-sub">用 内 容 降 低 理 解 门 槛 · 让 审 美 成 为 信 任</div>
+  </div>
+
+  <!-- SELECTED WORKS -->
+  <section class="block">
+    <div class="sec-head">
+      <span class="no">01</span>
+      <h2 class="serif">Selected Works</h2>
+      <span class="cn">作 品 精 选</span>
+    </div>
+
+    <div class="case">
+      <div class="idx serif">01</div>
+      <div>
+        <h3 class="serif">MuseKey — AI Music Device for Kids<span class="tag">North America · 0→1</span></h3>
+        <div class="meta">Content Operations Lead · Instagram-first · Meta Ads · AI Pipeline</div>
+        <p>Own the brand's global social launch into the US market: built the <b>PLAY · CREATE · GROW</b> content pillar system and visual language from zero; run Meta lead-gen as structured experiments — first flight delivered <b>68 leads at $2.2 blended CPL</b>, top creative <b>9.85% CTR</b>; pioneered an AI content pipeline (prompt engineering with brand-safety constraints) producing brand-grade assets at ~$0.1 per image.</p>
+        <div class="chips">
+          <span class="chip">CPL <b>$2.2</b></span>
+          <span class="chip">Top CTR <b>9.85%</b></span>
+          <span class="chip">AI 素材成本 <b>≈1/10</b></span>
+          <span class="chip">Pixel + CAPI 全链路</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="idx serif">02</div>
+      <div>
+        <h3 class="serif">DOME — Premium Dining on the Bund<span class="tag">Shanghai · Lifestyle</span></h3>
+        <div class="meta">Overseas Content &amp; Growth · Creator Campaigns · Expats &amp; Tourists</div>
+        <p>Built the overseas content ecosystem 0→1 for a new premium Japanese dining brand, targeting expats and international visitors. Ran the New Year's Eve campaign in three acts — seeding, explaining, converting — with 20+ creators; pushed through a website booking fix that removed the key conversion breakpoint for overseas guests.</p>
+        <div class="chips">
+          <span class="chip">达人直接 ROI <b>1.43</b></span>
+          <span class="chip">到店客流 <b>+35%</b></span>
+          <span class="chip">曝光 <b>700K+</b></span>
+          <span class="chip">预订链接 CTR <b>3.58%</b></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="idx serif">03</div>
+      <div>
+        <h3 class="serif">TopJob — DTC Ergonomic Chair<span class="tag">North America · DTC</span></h3>
+        <div class="meta">Creator System 0→1 · Black Friday–Christmas · TikTok Ads</div>
+        <p>Built the North America creator program from scratch — a tiered pyramid of 50 creators with a full SOP from outreach to data tracking. Orchestrated the holiday campaign with a four-stage content layering model; appeared on-camera producing TikTok ad creatives and fed winning angles back into creator briefs in real time.</p>
+        <div class="chips">
+          <span class="chip">平均互动率 <b>2.09%</b>（基准 4×）</span>
+          <span class="chip">零推流 ER <b>6.02%</b></span>
+          <span class="chip">社媒广告 ROI <b>4.14</b></span>
+          <span class="chip">Q4 达人 ROI <b>翻倍</b></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATOR NETWORK -->
+  <section class="block">
+    <div class="sec-head">
+      <span class="no">02</span>
+      <h2 class="serif">Creator Network in Action</h2>
+      <span class="cn">达 人 实 战</span>
+    </div>
+    <div class="creators">
+      <div class="creator">
+        <div class="h">@anujar</div>
+        <div class="pf">IG + 小红书 · 时尚生活 · 70K</div>
+        <div class="m serif">26.5K<small> 播放</small></div>
+        <div class="ml">DOME 种草 · 精准触达在沪外籍圈层与赴沪游客</div>
+      </div>
+      <div class="creator">
+        <div class="h">@_lifeofsx</div>
+        <div class="pf">IG · 生活测评 · 16K</div>
+        <div class="m serif">42.4K<small> 播放</small></div>
+        <div class="ml">TopJob · 高质量自然流视频，互动 &gt; 广告流量</div>
+      </div>
+      <div class="creator">
+        <div class="h">@enchanted._.luna</div>
+        <div class="pf">IG · 电竞美学 · 10.6K</div>
+        <div class="m serif">4.29<small>% ER</small></div>
+        <div class="ml">TopJob · 高粘性 KOC，自然流互动远超推流</div>
+      </div>
+      <div class="creator">
+        <div class="h">@卢湾卡戴珊</div>
+        <div class="pf">小红书 · 高端社群 · 51K</div>
+        <div class="m serif">14.1K<small> 播放</small></div>
+        <div class="ml">DOME · 闺蜜局高端社交体验场景种草</div>
+      </div>
+      <div class="creator">
+        <div class="h">@小卢小卢身骑的卢</div>
+        <div class="pf">小红书 · 生活美学 · 29K</div>
+        <div class="m serif">16.9<small>% ER</small></div>
+        <div class="ml">DOME + GoodFellas · 双品牌内容复用</div>
+      </div>
+      <div class="creator">
+        <div class="h">@enerico.jr</div>
+        <div class="pf">IG · 测评/生活美学 · 73.5K</div>
+        <div class="m serif">9.0K<small> 播放</small></div>
+        <div class="ml">TopJob · "Simple &amp; Clean Design" 高质感测评</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHODOLOGY -->
+  <section class="block">
+    <div class="sec-head">
+      <span class="no">03</span>
+      <h2 class="serif">How I Work</h2>
+      <span class="cn">方 法 论</span>
+    </div>
+    <div class="methods">
+      <div class="method">
+        <div class="step">Framework · 01</div>
+        <h4 class="serif">PACE</h4>
+        <div class="cn">内容营销四步法</div>
+        <p>Product → Audience → Content angle → Experiment. 把产品价值翻译成用户愿意理解、互动和分享的内容，用小预算快速验证角度，再放大高效方向。</p>
+      </div>
+      <div class="method">
+        <div class="step">Framework · 02</div>
+        <h4 class="serif">5F</h4>
+        <div class="cn">达人筛选模型</div>
+        <p>Fit · Format · Feeling · Feedback · Feasibility。找最会讲这类故事的人，而不是粉丝最多的人——自然互动率优先于粉丝量级。</p>
+      </div>
+      <div class="method">
+        <div class="step">Framework · 03</div>
+        <h4 class="serif">Layered Season</h4>
+        <div class="cn">购物季内容分层</div>
+        <p>种草 → 解释 → 转化 → 复盘。大促不是促销节点，而是「认知→信任→行动」的加速链路——信任在前两步建立，折扣只是临门一脚。</p>
+      </div>
+      <div class="method">
+        <div class="step">Capability · 04</div>
+        <h4 class="serif">AI-Augmented</h4>
+        <div class="cn">AI 全链路提效</div>
+        <p>Prompt 工程 + 品牌视觉约束体系，内容生产效率提升 25%+，月交付 20+ 份素材，调性统一度 100%——让美感可以被规模化生产。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="big serif">Let's build the next beloved brand story.</div>
+    <div class="row">Shenzhen · 137 1445 2571 · 13714452571@163.com</div>
+    <div class="cn-tag">巫 婧 怡 · J I N G Y I &nbsp; W U · 2 0 2 6</div>
+  </footer>
+
+</div>
+
+</body>
+</html>

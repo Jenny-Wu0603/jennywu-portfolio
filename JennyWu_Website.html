@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jenny Wu — Social Media & Content Marketing</title>
+<meta name="description" content="Jenny Wu — Social Media & Content Marketing professional growing overseas-facing brands in lifestyle, DTC e-commerce and consumer hardware.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F2EB;         /* warm milk — Rhode-style base */
+    --cream-deep: #EFE5D6;    /* oat */
+    --card: #FCFAF5;
+    --ink: #2E211A;           /* deep chocolate */
+    --muted: #9A8B7B;         /* warm taupe */
+    --accent: #A97C50;        /* caramel bronze */
+    --accent-soft: #EDDFCB;   /* blush sand */
+    --line: #E3D8C7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    font-family: "Inter", -apple-system, "Helvetica Neue", sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--accent); color: var(--cream); }
+
+  /* ===== Grain overlay ===== */
+  .grain {
+    position: fixed; inset: -50%; z-index: 200; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    animation: grain 8s steps(10) infinite;
+  }
+  @keyframes grain {
+    0%,100%{transform:translate(0,0)} 20%{transform:translate(-3%,2%)}
+    40%{transform:translate(2%,-3%)} 60%{transform:translate(-2%,-2%)} 80%{transform:translate(3%,3%)}
+  }
+
+  /* ===== Custom cursor ===== */
+  .cursor-dot, .cursor-ring {
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 300;
+    border-radius: 50%; transform: translate(-50%,-50%);
+  }
+  .cursor-dot { width: 6px; height: 6px; background: var(--accent); }
+  .cursor-ring {
+    width: 34px; height: 34px; border: 1px solid var(--accent);
+    transition: width .25s, height .25s, opacity .25s, background .25s;
+    opacity: .5;
+  }
+  .cursor-ring.hovered { width: 56px; height: 56px; opacity: .9; background: rgba(169,124,80,.1); }
+  @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
+
+  /* ===== Scroll progress ===== */
+  .progress {
+    position: fixed; top: 0; left: 0; height: 2px; background: var(--accent);
+    width: 0%; z-index: 250;
+  }
+
+  /* ===== Reveal animations ===== */
+  .rv { opacity: 0; transform: translateY(36px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+  .rv.on { opacity: 1; transform: none; }
+  .rv-d1 { transition-delay: .1s; } .rv-d2 { transition-delay: .2s; } .rv-d3 { transition-delay: .3s; }
+
+  .serif { font-family: "Cormorant Garamond", Georgia, serif; }
+
+  /* ===== Nav ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    transition: background .3s, border-color .3s;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled {
+    background: rgba(245,240,232,.88);
+    backdrop-filter: blur(12px);
+    border-bottom-color: var(--line);
+  }
+  .nav-inner {
+    max-width: 1160px; margin: 0 auto; padding: 18px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-size: 17px; letter-spacing: 4px; font-weight: 600; color: var(--ink); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 34px; list-style: none; align-items: center; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 13.5px; letter-spacing: 1px;
+    position: relative; transition: color .2s;
+  }
+  .nav-links a:not(.nav-cta)::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; height: 1px; width: 0;
+    background: var(--accent); transition: width .3s cubic-bezier(.16,1,.3,1);
+  }
+  .nav-links a:not(.nav-cta):hover::after, .nav-links a.active:not(.nav-cta)::after { width: 100%; }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink); color: var(--cream) !important; padding: 9px 20px;
+    border-radius: 999px; font-size: 13px; transition: background .25s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+  @media (max-width: 720px) {
+    .nav-inner { padding: 14px 20px; }
+    .nav-links { gap: 16px; }
+    .nav-links li.hide-m { display: none; }
+  }
+
+  /* ===== Sections ===== */
+  section { max-width: 1160px; margin: 0 auto; padding: 110px 40px; }
+  .sec-label {
+    font-size: 12px; letter-spacing: 5px; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 16px; font-weight: 600;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .sec-label::before { content: ""; width: 32px; height: 1px; background: var(--accent); }
+  .sec-title {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(36px, 5vw, 56px); font-weight: 500; line-height: 1.15;
+    margin-bottom: 48px; letter-spacing: .5px;
+  }
+  .sec-title em { font-style: italic; color: var(--accent); }
+  @media (max-width: 720px) { section { padding: 72px 20px; } }
+
+  /* ===== Hero ===== */
+  .hero {
+    min-height: 100vh; display: grid; grid-template-columns: 1.15fr .85fr;
+    align-items: center; gap: 56px; padding-top: 120px; position: relative;
+  }
+  .hero-visual {
+    position: relative;
+    opacity: 0; animation: fadeup 1s ease .8s forwards;
+  }
+  /* single editorial image, Rhode-style arch */
+  .hero-visual .arch {
+    border-radius: 280px 280px 24px 24px; overflow: hidden;
+    box-shadow: 0 40px 90px rgba(46,33,26,.18);
+    will-change: transform;
+  }
+  .hero-visual .arch img {
+    display: block; width: 100%; height: 560px; object-fit: cover;
+    transform: scale(1.06); transition: transform 1.2s cubic-bezier(.16,1,.3,1);
+  }
+  .hero-visual .arch:hover img { transform: scale(1.12); }
+  .hero-visual .tag {
+    position: absolute; left: -24px; bottom: 36px; z-index: 4;
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+    padding: 13px 22px; font-size: 12px; letter-spacing: 1.5px; color: var(--muted);
+    box-shadow: 0 14px 36px rgba(46,33,26,.12); text-transform: uppercase;
+  }
+  .hero-visual .tag b { display: block; color: var(--ink); font-size: 13.5px; letter-spacing: .5px; text-transform: none; margin-top: 2px; }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 48px; padding-top: 110px; }
+    .hero-visual .arch img { height: 400px; }
+    .hero-visual .tag { left: 12px; bottom: 20px; }
+  }
+  .hero-eyebrow {
+    font-size: 13px; letter-spacing: 4px; color: var(--accent);
+    margin-bottom: 28px; font-weight: 600;
+  }
+  .hero h1 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(52px, 8.2vw, 104px); font-weight: 500;
+    line-height: 1.02; letter-spacing: 0; margin-bottom: 36px;
+  }
+  .hero h1 .line { display: block; overflow: hidden; }
+  .hero h1 .line span { display: inline-block; transform: translateY(110%); animation: rise 1.1s cubic-bezier(.16,1,.3,1) forwards; }
+  .hero h1 .line:nth-child(2) span { animation-delay: .12s; }
+  .hero h1 .line:nth-child(3) span { animation-delay: .24s; }
+  @keyframes rise { to { transform: none; } }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 17.5px; color: var(--muted); max-width: 540px; margin-bottom: 44px;
+    opacity: 0; animation: fadeup .9s ease .5s forwards;
+  }
+  .hero-sub strong { color: var(--ink); font-weight: 600; }
+  @keyframes fadeup { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: fadeup .9s ease .7s forwards; }
+  .btn {
+    display: inline-block; padding: 15px 34px; border-radius: 999px;
+    text-decoration: none; font-size: 14.5px; font-weight: 600; letter-spacing: 1px;
+    transition: transform .25s cubic-bezier(.16,1,.3,1), background .25s, color .25s, border-color .25s;
+    will-change: transform;
+  }
+  .btn-solid { background: var(--ink); color: var(--cream); }
+  .btn-solid:hover { background: var(--accent); }
+  .btn-outline { border: 1.5px solid var(--ink); color: var(--ink); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-side {
+    position: absolute; right: 40px; bottom: 48px; text-align: right;
+    font-size: 12px; letter-spacing: 3px; color: var(--muted); writing-mode: vertical-rl;
+    opacity: 0; animation: fadeup .9s ease .9s forwards;
+  }
+  @media (max-width: 720px) { .hero-side { display: none; } }
+
+  /* ===== Marquee ===== */
+  .marquee {
+    overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    padding: 20px 0; background: var(--cream-deep);
+  }
+  .marquee-track {
+    display: flex; gap: 56px; width: max-content;
+    animation: mq 28s linear infinite;
+  }
+  .marquee-track span {
+    font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; font-style: italic;
+    color: var(--muted); white-space: nowrap; display: flex; align-items: center; gap: 56px;
+  }
+  .marquee-track span::after { content: "✳"; color: var(--accent); font-size: 16px; }
+  @keyframes mq { to { transform: translateX(-50%); } }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  /* ===== Stats ===== */
+  .stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--line); max-width: none; padding: 0; border-bottom: 1px solid var(--line); }
+  .stat { background: var(--cream); padding: 44px 14px; text-align: center; transition: background .3s; }
+  .stat:hover { background: var(--card); }
+  .stat b {
+    display: block; font-family: "Cormorant Garamond", Georgia, serif; font-size: 38px; font-weight: 500;
+    color: var(--ink); margin-bottom: 6px; line-height: 1;
+  }
+  .stat span { font-size: 11.5px; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; }
+  @media (max-width: 900px) { .stats { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ===== About ===== */
+  .about-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: start; }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 44px; } }
+  .about-lead {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(24px, 3vw, 30px); line-height: 1.5; font-weight: 500;
+  }
+  .about-lead em { color: var(--accent); font-style: italic; }
+  .about-body { color: var(--muted); font-size: 15.5px; margin-top: 24px; }
+  .cap-list { display: flex; flex-direction: column; gap: 12px; }
+  .cap {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px 22px; transition: transform .3s cubic-bezier(.16,1,.3,1), border-color .3s, box-shadow .3s;
+  }
+  .cap:hover { transform: translateX(6px); border-color: var(--accent); box-shadow: 0 12px 32px rgba(33,29,23,.06); }
+  .cap b { display: block; font-size: 15px; margin-bottom: 4px; }
+  .cap span { font-size: 13.5px; color: var(--muted); }
+
+  /* ===== Experience ===== */
+  .job {
+    display: grid; grid-template-columns: 260px 1fr; gap: 40px;
+    padding: 44px 0; border-top: 1px solid var(--line);
+    transition: padding-left .35s cubic-bezier(.16,1,.3,1);
+  }
+  .job:hover { padding-left: 12px; }
+  .job:first-of-type { border-top: none; padding-top: 8px; }
+  @media (max-width: 760px) { .job { grid-template-columns: 1fr; gap: 10px; } .job:hover { padding-left: 0; } }
+  .job-meta .co {
+    font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; font-size: 24px;
+  }
+  .job-meta .role { color: var(--accent); font-size: 14px; margin-top: 4px; }
+  .job-meta .date { color: var(--muted); font-size: 13px; margin-top: 8px; letter-spacing: 1px; }
+  .job ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .job li { font-size: 15px; padding-left: 22px; position: relative; color: #4C463C; }
+  .job li::before {
+    content: ""; position: absolute; left: 0; top: 12px;
+    width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+  }
+  .job li b { color: var(--ink); }
+
+  /* ===== Work ===== */
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+  @media (max-width: 760px) { .work-grid { grid-template-columns: 1fr; } }
+  .work-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+    padding: 34px; display: flex; flex-direction: column; gap: 16px;
+    transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .3s, box-shadow .35s;
+    position: relative; overflow: hidden;
+  }
+  .work-card::after {
+    content: "→"; position: absolute; right: 28px; top: 28px;
+    font-size: 22px; color: var(--accent); opacity: 0; transform: translateX(-10px);
+    transition: opacity .3s, transform .3s;
+  }
+  .work-card:hover {
+    transform: translateY(-6px); border-color: var(--accent);
+    box-shadow: 0 20px 48px rgba(33,29,23,.08);
+  }
+  .work-card:hover::after { opacity: 1; transform: none; }
+  .work-card.featured { background: var(--accent); border-color: var(--accent); color: var(--cream); }
+  .work-card.featured::after { color: var(--cream); }
+  .work-card.featured .work-tag, .work-card.featured p { color: rgba(245,240,232,.85); }
+  .work-tag {
+    font-size: 11px; letter-spacing: 2.5px; color: var(--muted);
+    text-transform: uppercase; font-weight: 600;
+  }
+  .work-card h3 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 24px; font-weight: 600; line-height: 1.3; }
+  .work-card p { font-size: 14.5px; color: var(--muted); }
+  .work-metrics { display: flex; gap: 24px; margin-top: auto; padding-top: 10px; flex-wrap: wrap; }
+  .work-metrics div b {
+    display: block; font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 24px; font-weight: 600;
+  }
+  .work-metrics div span { font-size: 10.5px; letter-spacing: 1.5px; opacity: .72; text-transform: uppercase; }
+
+  /* ===== Case cards ===== */
+  .case-card {
+    border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
+    background: var(--card); cursor: pointer; text-align: left; padding: 0;
+    display: flex; flex-direction: column;
+    transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .3s, box-shadow .35s;
+    font-family: inherit; color: inherit;
+    text-decoration: none;
+  }
+  .case-card:hover {
+    transform: translateY(-6px); border-color: var(--accent);
+    box-shadow: 0 20px 48px rgba(33,29,23,.1);
+  }
+  .case-cover { height: 220px; overflow: hidden; background: var(--accent-soft); position: relative; }
+  .case-cover img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .6s cubic-bezier(.16,1,.3,1);
+  }
+  .case-card:hover .case-cover img { transform: scale(1.06); }
+  .case-cover.solid {
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--accent-soft), var(--cream-deep));
+    color: var(--accent); font-size: 34px;
+  }
+  .case-body { padding: 24px 26px 26px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .case-body .work-tag { margin-bottom: 2px; }
+  .case-body h3 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; font-weight: 600; line-height: 1.3; }
+  .case-body p { font-size: 14px; color: var(--muted); }
+  .case-open {
+    margin-top: auto; padding-top: 12px; font-size: 13px; letter-spacing: 1.5px;
+    color: var(--accent); font-weight: 600; text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .case-open::after { content: "→"; transition: transform .3s; }
+  .case-card:hover .case-open::after { transform: translateX(6px); }
+
+
+  /* ===== Contact ===== */
+  .contact { text-align: center; padding-bottom: 80px; }
+  .contact h2 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(42px, 7vw, 72px); font-weight: 500; line-height: 1.1; margin-bottom: 24px;
+  }
+  .contact h2 em { font-style: italic; color: var(--accent); }
+  .contact p { color: var(--muted); max-width: 480px; margin: 0 auto 40px; }
+  .contact-line { font-size: 15px; color: var(--ink); margin-top: 32px; }
+  .contact-line a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+  footer {
+    border-top: 1px solid var(--line); padding: 32px 40px; text-align: center;
+    color: var(--muted); font-size: 12px; letter-spacing: 3px;
+  }
+
+  /* ===== Back to top ===== */
+  .to-top {
+    position: fixed; right: 28px; bottom: 28px; z-index: 120;
+    width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line);
+    background: var(--card); color: var(--ink); font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s;
+    transform: translateY(12px);
+  }
+  .to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+  .to-top:hover { background: var(--accent); color: var(--cream); border-color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="progress" id="progress"></div>
+<div class="cursor-dot" id="curDot"></div>
+<div class="cursor-ring" id="curRing"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top">JENNY<span>·</span>WU</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#work">Work</a></li>
+      <li class="hide-m"><a href="#cases">Cases</a></li>
+      <li><a class="nav-cta" href="mailto:jingyiw379@gmail.com">Say Hello</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="hero-text">
+    <p class="hero-eyebrow">SOCIAL MEDIA & CONTENT MARKETING — SHENZHEN / NORTH AMERICA</p>
+    <h1>
+      <span class="line"><span>Jenny Wu,</span></span>
+      <span class="line"><span><em>Global Brand</em></span></span>
+      <span class="line"><span><em>Growth.</em></span></span>
+    </h1>
+    <p class="hero-sub">3 years growing <strong>premium lifestyle, DTC e-commerce and consumer hardware</strong> brands in overseas markets. A Visual Communication Design graduate who owns overseas social media end to end — content systems, creator programs and creative strategy — with paid social and AI tools in the toolkit.</p>
+    <div class="hero-actions">
+      <a class="btn btn-outline magnetic" href="#work">Selected Work</a>
+    </div>
+  </div>
+  <div class="hero-visual" id="heroCollage">
+    <div class="arch" data-depth="12">
+      <img src="./site_assets/hero_arch.jpg" alt="Hands typing on a MacBook showing a social discovery feed — warm editorial lifestyle">
+    </div>
+    <div class="tag">Currently Crafting<b>MuseKey · U.S. Market Entry</b></div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee">
+  <div class="marquee-track" id="mqTrack">
+    <span>Instagram Strategy</span><span>Creator Marketing</span><span>Paid Social</span><span>AI Content Production</span><span>Brand Storytelling</span><span>Growth Experiments</span>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats" id="stats">
+  <div class="stat"><b data-count="27" data-suffix="K+">0</b><span>90 Days Views · MuseKey</span></div>
+  <div class="stat"><b data-count="700" data-suffix="K+">0</b><span>Brand Exposure · DOME</span></div>
+  <div class="stat"><b data-count="1.43" data-decimals="2">0</b><span>Creator ROI · DOME</span></div>
+  <div class="stat"><b data-count="35" data-prefix="+" data-suffix="%">0</b><span>Store Foot Traffic · DOME</span></div>
+  <div class="stat"><b data-count="4" data-suffix="%+">0</b><span>IG Engagement · TopJob</span></div>
+  <div class="stat"><b data-count="4.14" data-decimals="2">0</b><span>Black Friday Ads ROI · TopJob</span></div>
+</div>
+
+<!-- About -->
+<section id="about">
+  <p class="sec-label rv">About</p>
+  <h2 class="sec-title rv rv-d1">Aesthetics as the baseline,<br><em>data as the language</em></h2>
+  <div class="about-grid">
+    <div class="rv rv-d1">
+      <p class="about-lead">I'm Jenny — a social media and content marketer focused on <em>overseas markets</em>. I've built Instagram content systems from zero, managed creator rosters of 50+, and run Meta Ads experiments myself — because good content deserves to be seen, and to be measured.</p>
+      <p class="about-body">My background in Visual Communication Design shapes how I write briefs: never "list the product features," but "show the moment someone forgets they're wearing your product." I use AI tools across content planning, visual asset generation and campaign analysis — trading technology for time, and time for creative judgment. The result is work built for North American audiences: tone-native, platform-native, and measured against real metrics.</p>
+    </div>
+    <div class="cap-list">
+      <div class="cap rv rv-d1"><b>Brand Content Strategy</b><span>Content pillars, visual guidelines and editorial calendars built from scratch; multi-brand content optimization</span></div>
+      <div class="cap rv rv-d2"><b>Creator Marketing 0→1</b><span>Sourcing, outreach playbooks and tiered collaboration across 50+ creators — from first DM to ROI tracking</span></div>
+      <div class="cap rv-d2 rv"><b>Meta Paid Social</b><span>Hands-on Ads Manager, Pixel/CAPI tracking, controlled A/B tests and experiment reviews</span></div>
+      <div class="cap rv rv-d3"><b>AI Content Production</b><span>Prompt engineering + visual QA workflows — Reels production at ¥31–39 (≈ $4.6-4.9) per asset</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <p class="sec-label rv">Experience</p>
+  <h2 class="sec-title rv rv-d1">Four chapters, one storyline:<br><em>making brands seen overseas</em></h2>
+
+  <div class="job rv">
+    <div class="job-meta">
+      <div class="co">MuseKey</div>
+      <div class="role">Overseas Social Media & Content Lead</div>
+      <div class="date">AUG 2026 – PRESENT · SHENZHEN</div>
+    </div>
+    <ul>
+      <li><b>Fully own overseas social media</b> for MuseKey's U.S. entry — social strategy, day-to-day operations and content creative, end to end</li>
+      <li><b>Built Instagram from zero:</b> PLAY · CREATE · GROW content pillars, brand visual rules, and a weekly calendar tied to product milestones</li>
+      <li><b>Creator marketing 0→1:</b> outreach across parenting, kids' education and creative-toy verticals, first-touch framed as "early product trial," working toward the first 30 overseas seed families</li>
+      <li><b>AI production pipeline:</b> Jimeng AI + visual QA — Reels at ¥31–39 per asset, statics under ¥1</li>
+      <li><b>Also support Meta paid social</b> alongside North America GTM: three product-tier campaigns moving from lead gen to $1 deposit reservations — $1.40 paid CPL and 30+ Super Early Bird deposits at $32.8 CPD, top creative CTR 9.85%</li>
+    </ul>
+  </div>
+
+  <div class="job rv">
+    <div class="job-meta">
+      <div class="co">DOME Group</div>
+      <div class="role">Marketing Manager</div>
+      <div class="date">APR 2025 – MAY 2026 · SHANGHAI</div>
+    </div>
+    <ul>
+      <li><b>New brand launch 0→1:</b> positioning, website structure, overseas social channels — 700K+ exposure and +35% store foot traffic within 6 months</li>
+      <li><b>Refreshed three mature brands:</b> rewrote value propositions and channel plans; The Fellas IG monthly exposure 40K→90K, The Captain 2K–3K→50K–60K</li>
+      <li><b>Creator program:</b> recruited and managed 50+ overseas creators; New Year's Eve campaign returned 1.43x direct creator ROI</li>
+      <li><b>Conversion fix:</b> pushed a direct web booking button live, closing the biggest gap between content and table</li>
+    </ul>
+  </div>
+
+  <div class="job rv">
+    <div class="job-meta">
+      <div class="co">TopJob</div>
+      <div class="role">Social Media Specialist (Overseas)</div>
+      <div class="date">OCT 2024 – FEB 2025 · SHANGHAI</div>
+    </div>
+    <ul>
+      <li><b>North America creator matrix:</b> recruited 50 creators across three tiers, replacing feature-read briefs with real-scene directions</li>
+      <li><b>Black Friday campaign:</b> 17 creators on a four-week arc — social ads ROI 4.14, creator ROI doubled from ~0.6:1 to ~1.3:1 in one quarter</li>
+      <li><b>Content results:</b> published collaborations averaged 2.09% engagement — roughly 4x the home-category Instagram benchmark</li>
+      <li><b>On-camera myself</b> for TikTok ad creatives, feeding winning angles back into creator briefs the same week</li>
+    </ul>
+  </div>
+
+  <div class="job rv">
+    <div class="job-meta">
+      <div class="co">REL EVENTS · M&M</div>
+      <div class="role">Social Media & Marketing Consultant (Project-Based)</div>
+      <div class="date">AUG 2023 – AUG 2024</div>
+    </div>
+    <ul>
+      <li><b>Grew REL EVENTS' IG/FB from zero:</b> street-interview video series and trending-topic campaigns — engagement +200% and sign-up conversion +20% in 3 months</li>
+      <li>200K+ social visits and <b>500+ offline attendees</b>; recruited 20+ overseas creators to promote events and sell tickets</li>
+      <li>At M&M, ran 3+ brand campaigns end to end; standardized templates and handoffs, cutting execution cost ~20%</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Work -->
+<section id="work">
+  <p class="sec-label rv">Selected Work</p>
+  <h2 class="sec-title rv rv-d1">Results, <em>in numbers</em></h2>
+  <div class="work-grid">
+
+    <div class="work-card featured rv">
+      <p class="work-tag">MuseKey · Social & Content & Paid Media</p>
+      <h3>0→1 Social Media & Content Operations for a Kids' Hardware U.S. Launch</h3>
+      <p>Owned Instagram end-to-end — content pillars, posting system and creator outreach, with Meta paid experiments as a supporting lever from lead gen to $1 deposit reservations.</p>
+      <div class="work-metrics">
+        <div><b>27K+</b><span>90-Day Views</span></div>
+        <div><b>300+</b><span>Email Leads</span></div>
+        <div><b>$1.40</b><span>Paid CPL</span></div>
+        <div><b>$32.8</b><span>Cost Per $1 Deposit</span></div>
+        <div><b>9.85%</b><span>Top CTR</span></div>
+      </div>
+    </div>
+
+    <div class="work-card rv rv-d1">
+      <p class="work-tag">TopJob · Creator Marketing</p>
+      <h3>Black Friday Creator Campaign for an Ergonomic Chair DTC Brand</h3>
+      <p>The full cycle from zero to peak season: recruiting, briefing, tracking, iterating.</p>
+      <div class="work-metrics">
+        <div><b>4.14</b><span>Ads ROI</span></div>
+        <div><b>0.6→1.3</b><span>Creator ROI</span></div>
+        <div><b>2.09%</b><span>Avg. Engagement</span></div>
+      </div>
+    </div>
+
+    <div class="work-card rv">
+      <p class="work-tag">DOME · Brand Launch & Refresh</p>
+      <h3>0→1 Launch + Multi-Brand Refresh for a Restaurant Group</h3>
+      <p>New brand go-to-market, repositioning of three established brands, a 50+ creator program, and a direct booking fix that closed the content-to-table loop.</p>
+      <div class="work-metrics">
+        <div><b>40K→90K</b><span>Highest Monthly Exposure</span></div>
+        <div><b>700K+</b><span>Exposure</span></div>
+        <div><b>+35%</b><span>Foot Traffic</span></div>
+        <div><b>1.43</b><span>NYE Creator ROI</span></div>
+      </div>
+    </div>
+
+    <div class="work-card rv rv-d1">
+      <p class="work-tag">AI Workflow · Production</p>
+      <h3>AI-Assisted Content Production, Without Losing Taste</h3>
+      <p>Prompt engineering + visual QA — cut Reel costs to ¥31–39 and statics to under ¥1.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Case Studies (click to open) -->
+<section id="cases">
+  <p class="sec-label rv">Case Studies</p>
+  <h2 class="sec-title rv rv-d1">The stories <em>behind the numbers</em></h2>
+  <div class="work-grid">
+
+    <a class="case-card rv" href="./case-musekey.html">
+      <div class="case-cover"><img src="./site_assets/musekey_bedside_scene.jpg" alt="Child sleeping next to a MuseKey device"></div>
+      <div class="case-body">
+        <p class="work-tag">MuseKey · Social & Content & Paid Media</p>
+        <h3>0→1 Social Media & Content Operations for a Kids' Hardware U.S. Launch</h3>
+        <p>Owned Instagram end-to-end — content pillars, posting system and creator outreach — with Meta paid experiments as a supporting lever.</p>
+        <span class="case-open">View Case</span>
+      </div>
+    </a>
+
+    <a class="case-card rv" href="./case-topjob.html">
+      <div class="case-cover"><img src="./site_assets/figma/topjob_cover.jpg" alt="TopJob Napa ergonomic chair creator Reel by cozyleafs"></div>
+      <div class="case-body">
+        <p class="work-tag">TopJob · Creator Marketing</p>
+        <h3>Creator-Led Growth for a High-Consideration DTC Product</h3>
+        <p>Recruiting, briefing and iterating a 50-creator matrix through peak season.</p>
+        <span class="case-open">View Case</span>
+      </div>
+    </a>
+
+    <a class="case-card rv" href="./case-dome.html">
+      <div class="case-cover"><img src="./site_assets/figma/dome_cover.jpg" alt="Evening cocktails at The Dome Shanghai terrace overlooking the Bund"></div>
+      <div class="case-body">
+        <p class="work-tag">DOME · Brand Launch & Refresh</p>
+        <h3>From "Can I Take Photos?" to "How Do I Book?"</h3>
+        <p>New brand go-to-market, multi-brand repositioning, and a direct booking fix that turned content into foot traffic.</p>
+        <span class="case-open">View Case</span>
+      </div>
+    </a>
+
+    <a class="case-card rv" href="./case-ai.html">
+      <div class="case-cover"><img src="./site_assets/ai_workflow_desk.jpg" alt="AI-assisted content production workspace"></div>
+      <div class="case-body">
+        <p class="work-tag">AI Workflow · Production</p>
+        <h3>AI-Assisted Content Production, Without Losing Taste</h3>
+        <p>Prompt engineering + visual QA — how I cut asset costs by ~10x while protecting brand standards.</p>
+        <span class="case-open">View Case</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact">
+  <p class="sec-label rv" style="justify-content:center;">Contact</p>
+  <h2 class="rv rv-d1">Make good content<br><em>seen — and measured</em></h2>
+  <p class="rv rv-d2">Open to Social Media Marketing opportunities, and always happy to talk overseas content marketing and creator partnerships.</p>
+  <div class="hero-actions rv rv-d2" style="justify-content:center;opacity:1;animation:none;">
+    <a class="btn btn-solid magnetic" href="mailto:jingyiw379@gmail.com">Email Me</a>
+  </div>
+  <p class="contact-line rv rv-d3">+86 137 1445 2571</p>
+</section>
+
+<footer>
+  JENNY WU · PLAY · CREATE · KEEP · 2026
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+  /* ---------- Hero collage layered parallax ---------- */
+  const collage = document.getElementById('heroCollage');
+  if (collage && matchMedia('(pointer: fine)').matches) {
+    const layers = collage.querySelectorAll('[data-depth]');
+    window.addEventListener('mousemove', e => {
+      const nx = e.clientX / innerWidth - .5;
+      const ny = e.clientY / innerHeight - .5;
+      layers.forEach(el => {
+        const d = parseFloat(el.dataset.depth) || 10;
+        el.style.translate = `${nx * d}px ${ny * d * .8}px`;
+      });
+    });
+  }
+</script>
+
+<script>
+  /* ---------- Scroll reveal ---------- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  /* ---------- Nav scrolled state + progress ---------- */
+  const nav = document.getElementById('nav');
+  const progress = document.getElementById('progress');
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    const h = document.documentElement;
+    progress.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+    toTop.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
+  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* ---------- Marquee: duplicate track for seamless loop ---------- */
+  const mq = document.getElementById('mqTrack');
+  mq.innerHTML += mq.innerHTML;
+
+  /* ---------- Animated counters ---------- */
+  const statsIO = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      statsIO.unobserve(entry.target);
+      entry.target.querySelectorAll('b[data-count]').forEach(el => {
+        const target = parseFloat(el.dataset.count);
+        const decimals = parseInt(el.dataset.decimals || 0);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const dur = 1400; const t0 = performance.now();
+        const tick = now => {
+          const p = Math.min((now - t0) / dur, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = prefix + (target * eased).toFixed(decimals) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    });
+  }, { threshold: 0.3 });
+  statsIO.observe(document.getElementById('stats'));
+
+  /* ---------- Custom cursor ---------- */
+  const dot = document.getElementById('curDot');
+  const ring = document.getElementById('curRing');
+  let mx = -100, my = -100, rx = -100, ry = -100;
+  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function loop() {
+    rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
+    dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+    ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, .work-card, .cap, .case-card').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+  });
+
+  /* ---------- Magnetic buttons ---------- */
+  document.querySelectorAll('.magnetic').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width / 2;
+      const y = e.clientY - r.top - r.height / 2;
+      btn.style.transform = `translate(${x * 0.18}px, ${y * 0.22}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+</script>
+
+</body>
+</html>

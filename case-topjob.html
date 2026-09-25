@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TopJob Case — Creator-Led Growth for a High-Consideration DTC Product | Jenny Wu</title>
+<meta name="description" content="TopJob Black Friday creator campaign: a 50-creator pyramid across macro, mid and nano tiers, brief evolution and a four-phase campaign arc.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F2EB;
+    --card: #FCFAF5;
+    --ink: #2E211A;
+    --muted: #9A8B7B;
+    --accent: #A97C50;
+    --accent-soft: #EDDFCB;
+    --line: #E3D8C7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    font-family: "Inter", -apple-system, "Helvetica Neue", sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  img { display: block; max-width: 100%; }
+
+  header { position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
+  .nav-inner {
+    max-width: 1160px; margin: 0 auto; padding: 32px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .back-link { color: var(--cream); text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: .5px; }
+  .back-link:hover { color: var(--accent-soft); }
+  .nav-links { display: flex; gap: 34px; list-style: none; align-items: center; }
+  .nav-links li { color: var(--cream); font-size: 14px; font-weight: 600; }
+
+  .hero { width: 100%; }
+  .hero img { width: 100%; height: auto; }
+
+  .brief { max-width: 1160px; margin: 0 auto; padding: 80px 40px 60px; }
+  .sec-label {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 12px; font-weight: 600; letter-spacing: 3px; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .sec-label::before { content: ""; width: 32px; height: 1px; background: var(--accent); }
+  .brief-text {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 38px; font-weight: 500; line-height: 1.5;
+  }
+
+  .section { max-width: 1160px; margin: 0 auto; padding: 60px 40px; }
+  .sec-kicker {
+    font-size: 14px; font-weight: 600; letter-spacing: 3px; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .sec-title {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 30px; font-weight: 500; margin-bottom: 8px;
+  }
+  .sec-sub {
+    font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+    margin: 24px 0 32px;
+  }
+  .gallery-img { border-radius: 8px; overflow: hidden; margin: 0 auto; }
+  .gallery-img img { width: 100%; height: auto; }
+  .row-img { border-radius: 8px; overflow: hidden; margin-bottom: 24px; }
+  .row-img img { width: 100%; height: auto; }
+
+  .phase-flow {
+    font-size: 20px; font-weight: 600; margin: 40px 0 16px;
+  }
+  .phase-data {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 30px; font-weight: 500; margin-bottom: 16px;
+  }
+  .phase-note { font-size: 14px; color: var(--ink); max-width: 1011px; }
+
+  
+  /* ===== Lightbox ===== */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 200; display: none;
+    background: rgba(30,24,18,.92); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; animation: lbIn .25s ease; }
+  @keyframes lbIn { from { opacity: 0; } to { opacity: 1; } }
+  .lightbox img { max-width: 92vw; max-height: 92vh; border-radius: 8px; box-shadow: 0 24px 80px rgba(0,0,0,.4); }
+
+  /* ===== Scroll reveal ===== */
+  .rv { opacity: 0; transform: translateY(32px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .rv.on { opacity: 1; transform: none; }
+
+  /* ===== Content image hover ===== */
+  .section img, .block img { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+  .section img:hover, .block img:hover { transform: scale(1.015); }
+
+  /* ===== Back to top ===== */
+  .to-top {
+    position: fixed; right: 28px; bottom: 28px; z-index: 100;
+    width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);
+    background: var(--card); color: var(--ink); font-size: 18px; cursor: pointer;
+    opacity: 0; pointer-events: none; transition: opacity .3s, background .2s, color .2s;
+    box-shadow: 0 4px 16px rgba(33,29,23,.1);
+  }
+  .to-top.show { opacity: 1; pointer-events: auto; }
+  .to-top:hover { background: var(--ink); color: var(--cream); }
+
+  
+  /* ===== Phone mockup duo ===== */
+  .phone-block { max-width: 1160px; margin: 0 auto; padding: 44px 40px 10px; }
+  .phone-duo { display: flex; gap: 72px; justify-content: center; align-items: flex-start; margin-top: 28px; flex-wrap: wrap; }
+  .phone-unit { display: flex; flex-direction: column; align-items: center; }
+  .phone {
+    position: relative; height: 520px; padding: 10px;
+    background: linear-gradient(165deg, #FBF7F0, #F0E8DA);
+    border-radius: 44px;
+    box-shadow: 0 28px 70px rgba(33,29,23,.2), 0 4px 14px rgba(33,29,23,.09),
+      inset 0 0 0 1.5px rgba(46,33,26,.5);
+    transition: transform .5s cubic-bezier(.16,1,.3,1);
+  }
+  .phone:hover { transform: translateY(-8px) rotate(-.5deg); }
+  .phone img, .phone video { height: 100%; width: auto; border-radius: 34px; display: block; object-fit: cover; }
+  .phone-island {
+    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 22px; background: #2E211A; border-radius: 999px; z-index: 2;
+  }
+  .phone-cap { margin-top: 26px; font-size: 17.5px; font-weight: 600; text-align: center; line-height: 1.65; max-width: 340px; }
+  .phone-cap span { color: var(--muted); font-weight: 500; font-size: 15px; }
+  .phone-stage { display: flex; flex-direction: column; align-items: center; }
+  .phone-shadow {
+    width: 65%; height: 28px; margin-top: -12px;
+    background: radial-gradient(ellipse at center, rgba(33,29,23,.22), transparent 70%);
+  }
+  .h-hint { font-size: 12px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; text-align: center; }
+
+  /* ===== Macro triptych: card + post | video | card + post ===== */
+  .macro-tri { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 8px; align-items: start; }
+  .macro-col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .macro-card img, .macro-media img {
+    width: 100%; border-radius: 14px; display: block;
+    box-shadow: 0 8px 26px rgba(33,29,23,.12);
+    transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
+  }
+  .macro-card img:hover, .macro-media img:hover { transform: translateY(-4px); box-shadow: 0 14px 38px rgba(33,29,23,.17); }
+  .macro-center { align-items: stretch; }
+  .macro-center video {
+    width: 100%; height: auto; border-radius: 14px; cursor: pointer; display: block;
+    box-shadow: 0 10px 32px rgba(33,29,23,.16);
+    transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
+  }
+  .macro-center video:hover { transform: translateY(-4px); box-shadow: 0 16px 44px rgba(33,29,23,.22); }
+  .macro-center .h-hint { margin-top: 14px; }
+  .macro-name { font-size: 14px; font-weight: 600; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; text-align: center; margin-top: 2px; }
+  @media (max-width: 900px) {
+    .macro-tri { grid-template-columns: 1fr; }
+    .macro-center { max-width: 340px; margin: 0 auto; width: 100%; }
+  }
+  @media (max-width: 700px) {
+    .phone { height: 430px; }
+    .phone-duo { gap: 40px; }
+  }
+
+  .cta { text-align: center; padding: 120px 40px 100px; }
+  .cta h2 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 38px; font-weight: 500; margin-bottom: 20px;
+  }
+  .cta p { font-size: 12px; color: var(--muted); max-width: 600px; margin: 0 auto 40px; }
+  .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 16px 32px; font-size: 14px; font-weight: 600;
+    letter-spacing: 1px; text-decoration: none; border-radius: 999px; cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .btn-solid { background: var(--ink); color: var(--cream); border: 1px solid var(--ink); }
+  .btn-solid:hover { background: var(--accent); border-color: var(--accent); }
+  .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn-outline:hover { background: var(--ink); color: var(--cream); }
+
+  footer { text-align: center; padding: 40px; font-size: 12px; color: var(--muted); letter-spacing: 2px; }
+
+  @media (max-width: 900px) {
+    .brief-text { font-size: 28px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a class="back-link" href="./JennyWu_Website.html#cases">← Back to work</a>
+    <ul class="nav-links">
+      <li>TopJob Case</li>
+      <li>02 / 04</li>
+    </ul>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <img src="./site_assets/figma/tj_hero.jpg" alt="TopJob case study — Creator-Led Growth for a High-Consideration DTC Product">
+</div>
+
+<!-- The Brief -->
+<section class="brief">
+  <p class="sec-label">The Brief</p>
+  <p class="brief-text">Built a 50-creator system from scratch for a DTC ergonomic chair brand and ran a Black Friday arc that outperformed category benchmarks.</p>
+</section>
+
+<!-- Content Gallery -->
+<section class="section">
+  <p class="sec-kicker">Creative Assets</p>
+  <h2 class="sec-title">Content Gallery</h2>
+  <p class="sec-sub">Main Page</p>
+  <div class="phone-duo">
+    <div class="phone-unit">
+      <div class="phone"><div class="phone-island"></div>
+        <img loading="lazy" src="./site_assets/figma/tj_phone_1.jpg" alt="TopJob Instagram main page — owned content grid">
+      </div>
+    </div>
+    <div class="phone-unit">
+      <div class="phone"><div class="phone-island"></div>
+        <img loading="lazy" src="./site_assets/figma/tj_phone_2.jpg" alt="TopJob Instagram creator collaboration grid">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Creator Pyramid -->
+<section class="section">
+  <p class="sec-kicker">Creator Collaboration</p>
+  <h2 class="sec-title">The Creator Pyramid</h2>
+
+  <p class="sec-sub">Macro · Creators for Brand Proof</p>
+  <div class="macro-tri">
+    <div class="macro-col">
+      <div class="macro-card"><img loading="lazy" src="./site_assets/figma/tj_card_michael.jpg" alt="Michael Soledad — Instagram profile, 93.9K followers"></div>
+      <div class="macro-media"><img loading="lazy" src="./site_assets/figma/tj_post_michael.jpg" alt="Michael Soledad sponsored post for TopJob Napa Ergonomic Chair"></div>
+      <p class="macro-name">Michael Soledad · 93.9K</p>
+    </div>
+    <div class="macro-col macro-center">
+      <video src="./site_assets/figma/tj_reel.mp4" poster="./site_assets/figma/tj_reel.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Creator Reel by michasoledesign and topjoblab"></video>
+      <p class="h-hint">Creator Reel — michasoledesign × topjoblab</p>
+    </div>
+    <div class="macro-col">
+      <div class="macro-card"><img loading="lazy" src="./site_assets/figma/tj_card_jodi.jpg" alt="Jodi Go — Instagram profile, 427K followers"></div>
+      <div class="macro-media"><img loading="lazy" src="./site_assets/figma/tj_jodi_post.jpg" alt="Jodi Go paid partnership post — TopJob Napa Ergonomic Chair, 9,918 likes"></div>
+      <p class="macro-name">Jodi Go · 427K</p>
+    </div>
+  </div>
+
+  <p class="sec-sub">Mid · Creators as Content Engine</p>
+  <div class="row-img"><img loading="lazy" src="./site_assets/figma/tj_mid1.jpg" alt="Mid-tier creators row 1 — real workspace scenes with TopJob chair"></div>
+  <div class="row-img"><img loading="lazy" src="./site_assets/figma/tj_mid2.jpg" alt="Mid-tier creators row 2 — lifestyle and setup content"></div>
+
+  <p class="sec-sub">Nano · UGC</p>
+  <div class="row-img"><img loading="lazy" src="./site_assets/figma/tj_nano.jpg" alt="Nano creators — authentic UGC unboxing and daily use"></div>
+
+  <p class="sec-sub" style="font-family:'Cormorant Garamond',Georgia,serif; font-size:30px; font-weight:500; text-transform:none; letter-spacing:0;">Brief Evolution</p>
+  <p style="font-size:20px; font-weight:600; text-transform:uppercase; letter-spacing:1px; margin-bottom:24px;">Before→After</p>
+  <div class="gallery-img"><img loading="lazy" src="./site_assets/figma/tj_brief.jpg" alt="Brief evolution — from campaign objective document to structured deliverables brief"></div>
+</section>
+
+<!-- Phase Arc -->
+<section class="section">
+  <p class="sec-kicker">Black Friday &amp; Christmas</p>
+  <h2 class="sec-title">Phase Arc</h2>
+  <div class="row-img" style="margin-top:40px;"><img loading="lazy" src="./site_assets/figma/tj_phase.jpg" alt="Black Friday campaign arc — unboxing, comfort detail, offer and urgency creative"></div>
+  <p class="phase-flow">Seed：unboxing + real use → Explain：comfort + comparison → Convert：offer + urgency → Review：learn + reallocate</p>
+  <p class="phase-data">2.09% influencer engagement rate · 4.14 social ad ROI · 2× influencer ROI vs. Q3</p>
+  <p class="phase-note">Refined creator selection, content tiering, and real-time budget allocation to scale high-performing collaborations.</p>
+</section>
+
+<!-- Owned Content -->
+<section class="section">
+  <p class="sec-kicker">Social Media Operation</p>
+  <h2 class="sec-title">Owned Content</h2>
+  <div class="row-img" style="margin-top:40px;"><img loading="lazy" src="./site_assets/figma/tj_owned.jpg" alt="TopJob owned content — on-camera comfort demos and product storytelling"></div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Looking to launch your brand overseas?</h2>
+  <p>Let's discuss how we can build high-impact creative pipelines and lean validation frameworks for your next product launch.</p>
+  <div class="cta-row">
+    <a class="btn btn-solid" href="mailto:jingyiw379@gmail.com">Get In Touch</a>
+    <a class="btn btn-outline" href="./case-dome.html">View Next Case Study</a>
+  </div>
+</section>
+
+<footer>
+  JENNY WU · PLAY · CREATE · KEEP · 2026
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+<div class="lightbox" id="lightbox"><img alt=""></div>
+
+<script>
+  /* Scroll reveal */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.section, .block, .brief').forEach(el => {
+    el.classList.add('rv'); io.observe(el);
+  });
+
+  /* Lightbox */
+  const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('img');
+  document.querySelectorAll('.section img, .block img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => {
+      lbImg.src = img.src; lbImg.alt = img.alt;
+      lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+  /* Back to top */
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
+  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* Tap video to unmute / mute */
+  document.querySelectorAll('.macro-center video').forEach(v => {
+    v.addEventListener('click', () => {
+      v.muted = !v.muted;
+      if (!v.muted) { v.currentTime = 0; v.play(); }
+    });
+  });
+</script>
+
+</body>
+</html>

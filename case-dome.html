@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOME Case — From "Can I Take Photos?" to "How Do I Book?" | Jenny Wu</title>
+<meta name="description" content="DOME Group fine dining & lifestyle brand launch: 0→1 new brand, refresh of three established brands, 50+ creator program and a direct booking fix.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F2EB;
+    --card: #FCFAF5;
+    --ink: #2E211A;
+    --muted: #9A8B7B;
+    --accent: #A97C50;
+    --accent-soft: #EDDFCB;
+    --line: #E3D8C7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    font-family: "Inter", -apple-system, "Helvetica Neue", sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  img { display: block; max-width: 100%; }
+
+  header { position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
+  .nav-inner {
+    max-width: 1160px; margin: 0 auto; padding: 32px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .back-link { color: var(--cream); text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: .5px; }
+  .back-link:hover { color: var(--accent-soft); }
+  .nav-links { display: flex; gap: 34px; list-style: none; align-items: center; }
+  .nav-links li { color: var(--cream); font-size: 14px; font-weight: 600; }
+
+  .hero { width: 100%; }
+  .hero img { width: 100%; height: auto; }
+
+  .brief { max-width: 1160px; margin: 0 auto; padding: 80px 40px 40px; }
+  .sec-label {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 12px; font-weight: 600; letter-spacing: 3px; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .sec-label::before { content: ""; width: 32px; height: 1px; background: var(--accent); }
+  .brief-text {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 38px; font-weight: 500; line-height: 1.5;
+  }
+
+  .block { max-width: 1440px; margin: 0 auto; padding: 10px 0; }
+  .block-gap { padding-top: 44px; }
+  .block img { width: 100%; height: auto; }
+
+  
+  /* ===== Lightbox ===== */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 200; display: none;
+    background: rgba(30,24,18,.92); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; animation: lbIn .25s ease; }
+  @keyframes lbIn { from { opacity: 0; } to { opacity: 1; } }
+  .lightbox img { max-width: 92vw; max-height: 92vh; border-radius: 8px; box-shadow: 0 24px 80px rgba(0,0,0,.4); }
+
+  /* ===== Scroll reveal ===== */
+  .rv { opacity: 0; transform: translateY(32px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .rv.on { opacity: 1; transform: none; }
+
+  /* ===== Content image hover ===== */
+  .section img, .block img { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+  .section img:hover, .block img:hover { transform: scale(1.015); }
+
+  /* ===== Back to top ===== */
+  .to-top {
+    position: fixed; right: 28px; bottom: 28px; z-index: 100;
+    width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);
+    background: var(--card); color: var(--ink); font-size: 18px; cursor: pointer;
+    opacity: 0; pointer-events: none; transition: opacity .3s, background .2s, color .2s;
+    box-shadow: 0 4px 16px rgba(33,29,23,.1);
+  }
+  .to-top.show { opacity: 1; pointer-events: auto; }
+  .to-top:hover { background: var(--ink); color: var(--cream); }
+
+  
+  /* ===== Phone mockup duo ===== */
+  .phone-block { max-width: 1160px; margin: 0 auto; padding: 44px 40px 10px; }
+  .phone-duo { display: flex; gap: 72px; justify-content: center; align-items: flex-start; margin-top: 28px; flex-wrap: wrap; }
+  .phone-unit { display: flex; flex-direction: column; align-items: center; }
+  .phone {
+    position: relative; height: 520px; padding: 10px;
+    background: linear-gradient(165deg, #FBF7F0, #F0E8DA);
+    border-radius: 44px;
+    box-shadow: 0 28px 70px rgba(33,29,23,.2), 0 4px 14px rgba(33,29,23,.09),
+      inset 0 0 0 1.5px rgba(46,33,26,.5);
+    transition: transform .5s cubic-bezier(.16,1,.3,1);
+  }
+  .phone:hover { transform: translateY(-8px) rotate(-.5deg); }
+  .phone img { height: 100%; width: auto; border-radius: 34px; display: block; }
+  .phone-island {
+    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 22px; background: #2E211A; border-radius: 999px; z-index: 2;
+  }
+  .phone-cap { margin-top: 26px; font-size: 17.5px; font-weight: 600; text-align: center; line-height: 1.65; max-width: 340px; }
+  .phone-cap span { color: var(--muted); font-weight: 500; font-size: 15px; }
+  @media (max-width: 700px) {
+    .phone { height: 430px; }
+    .phone-duo { gap: 40px; }
+  }
+
+  .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px 40px; margin-top: 36px; }
+  .brand-unit { display: flex; flex-direction: column; align-items: center; }
+  .brand-phones { display: flex; gap: 20px; align-items: center; }
+  .phone.sm { height: 400px; padding: 8px; border-radius: 36px; }
+  .phone.sm img { border-radius: 28px; }
+  .phone.sm .phone-island { width: 62px; height: 17px; top: 16px; }
+  @media (max-width: 900px) {
+    .brand-grid { grid-template-columns: 1fr; }
+    .phone.sm { height: 340px; }
+  }
+
+  /* ===== Highlight videos (no phone frame) ===== */
+  .sec-wrap { max-width: 1160px; margin: 0 auto; padding: 20px 40px 10px; }
+  .hl-grid { display: flex; gap: 28px; justify-content: flex-start; margin-top: 8px; flex-wrap: wrap; }
+  .hl-unit { display: flex; flex-direction: column; align-items: center; }
+  .hl-grid video {
+    height: 320px; width: auto; border-radius: 16px; cursor: pointer;
+    box-shadow: 0 10px 32px rgba(33,29,23,.15);
+    transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
+  }
+  .hl-grid video:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(33,29,23,.2); }
+  .hl-cap { margin-top: 18px; font-size: 15px; font-weight: 600; text-align: center; max-width: 200px; line-height: 1.5; }
+  @media (max-width: 700px) {
+    .hl-grid video { height: 280px; }
+    .hl-grid { gap: 20px; justify-content: center; }
+  }
+
+  .cta { text-align: center; padding: 120px 40px 100px; }
+  .cta h2 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 38px; font-weight: 500; margin-bottom: 20px;
+  }
+  .cta p { font-size: 12px; color: var(--muted); max-width: 600px; margin: 0 auto 40px; }
+  .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 16px 32px; font-size: 14px; font-weight: 600;
+    letter-spacing: 1px; text-decoration: none; border-radius: 999px; cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .btn-solid { background: var(--ink); color: var(--cream); border: 1px solid var(--ink); }
+  .btn-solid:hover { background: var(--accent); border-color: var(--accent); }
+  .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn-outline:hover { background: var(--ink); color: var(--cream); }
+
+  footer { text-align: center; padding: 40px; font-size: 12px; color: var(--muted); letter-spacing: 2px; }
+
+  @media (max-width: 900px) {
+    .brief-text { font-size: 28px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a class="back-link" href="./JennyWu_Website.html#cases">← Back to work</a>
+    <ul class="nav-links">
+      <li>DOME Case</li>
+      <li>03 / 04</li>
+    </ul>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <img src="./site_assets/figma/dome_hero.jpg" alt="DOME case study — From Can I Take Photos? to How Do I Book? Fine dining & lifestyle, Shanghai, 4 brands">
+</div>
+
+<!-- The Brief -->
+<section class="brief">
+  <p class="sec-label">The Brief</p>
+  <p class="brief-text">Turned social attention into bookings across one new fine-dining launch and three established lifestyle brands.</p>
+</section>
+
+<!-- Content Gallery: four brands, each with account profile + content grid -->
+<div class="phone-block">
+  <p class="sec-kicker" style="font-size:14px; font-weight:600; letter-spacing:3px; color:var(--muted); text-transform:uppercase; margin-bottom:8px;">Creative Assets</p>
+  <h2 class="sec-title" style="font-family:'Cormorant Garamond',Georgia,serif; font-size:30px; font-weight:500; margin-bottom:8px;">Content Gallery</h2>
+  <p class="sec-sub" style="font-size:20px; font-weight:600; text-transform:uppercase; letter-spacing:1px; margin:24px 0 0;">Main Page</p>
+  <div class="brand-grid">
+    <div class="brand-unit">
+      <div class="brand-phones">
+        <div class="phone sm"><div class="phone-island"></div>
+          <img loading="lazy" src="./site_assets/figma/dome_profile.jpg" alt="TheDome Shanghai Instagram profile — 1,004 followers">
+        </div>
+        <div class="phone sm"><div class="phone-island"></div>
+          <img loading="lazy" src="./site_assets/figma/dome_grid.jpg" alt="TheDome Shanghai Instagram content grid — Japanese fine dining">
+        </div>
+      </div>
+      <p class="phone-cap"><b>DOME</b> · Modern Japanese fine dining &amp; lounge<br><span>From zero as an experience-led lifestyle brand.</span></p>
+    </div>
+    <div class="brand-unit">
+      <div class="brand-phones">
+        <div class="phone sm"><div class="phone-island"></div>
+          <img loading="lazy" src="./site_assets/figma/fellas_profile.jpg" alt="The Fellas Shanghai Instagram profile — 3,252 followers">
+        </div>
+        <div class="phone sm"><div class="phone-island"></div>
+          <img loading="lazy" src="./site_assets/figma/fellas_grid.jpg" alt="The Fellas Shanghai Instagram content grid — Italian steakhouse">
+        </div>
+      </div>
+      <p class="phone-cap"><b>The Fellas</b> · Italian steakhouse &amp; late-night social<br><span>From party posts to lifestyle content.</span></p>
+    </div>
+    <div class="brand-unit">
+      <div class="brand-phones">
+        <div class="phone sm"><div class="phone-island"></div>
+          <img loading="lazy" src="./site_assets/figma/captain_profile.jpg" alt="The Captain Shanghai Instagram profile — 3,471 followers">
+        </div>
+        <div class="phone sm"><div class="phone-island"></div>
+          <img loading="lazy" src="./site_assets/figma/captain_grid.jpg" alt="The Captain Shanghai Instagram content grid — Bund speakeasy">
+        </div>
+      </div>
+      <p class="phone-cap"><b>The Captain</b> · Bund speakeasy &amp; rooftop bar<br><span>From photo backdrop to occasion destination.</span></p>
+    </div>
+    <div class="brand-unit">
+      <div class="brand-phones">
+        <div class="phone sm"><div class="phone-island"></div>
+          <img loading="lazy" src="./site_assets/figma/goodfellas_profile.jpg" alt="GoodFellas Shanghai Instagram profile — 2,345 followers">
+        </div>
+        <div class="phone sm"><div class="phone-island"></div>
+          <img loading="lazy" src="./site_assets/figma/goodfellas_grid.jpg" alt="GoodFellas Shanghai Instagram content grid — Italian cultural storytelling">
+        </div>
+      </div>
+      <p class="phone-cap"><b>GoodFellas</b> · Authentic Italian<br><span>Online trust through cultural storytelling.</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- Content Ecosystem: The Bund Scene Sharing -->
+<div class="block block-gap">
+  <img loading="lazy" src="./site_assets/figma/dome_ecosystem.jpg" alt="Content Ecosystem Strategy — The Bund scene sharing across brand accounts">
+</div>
+
+<!-- Lifestyle Resonance -->
+<div class="block">
+  <img loading="lazy" src="./site_assets/figma/dome_lifestyle.jpg" alt="Lifestyle Resonance — dining and night-out content across DOME and The Fellas">
+</div>
+
+<!-- Food Column Area -->
+<div class="block">
+  <img loading="lazy" src="./site_assets/figma/dome_food.jpg" alt="Food Column Area — Japanese and Western cuisine series: Creative Omakase, Seasonal Theme, Traditional Japanese Events, Signature Series, Classic Italian">
+</div>
+
+<!-- Account Highlights: four brand highlight videos -->
+<div class="sec-wrap">
+  <p class="sec-kicker" style="font-size:14px; font-weight:600; letter-spacing:3px; color:var(--muted); text-transform:uppercase; margin-bottom:20px;">Account Highlights</p>
+  <div class="hl-grid">
+    <div class="hl-unit">
+      <video src="./site_assets/figma/hl_chef.mp4" poster="./site_assets/figma/hl_chef.jpg" autoplay muted loop playsinline preload="metadata"></video>
+      <p class="hl-cap">DOME — Chef IP</p>
+    </div>
+    <div class="hl-unit">
+      <video src="./site_assets/figma/hl_fellas.mp4" poster="./site_assets/figma/hl_fellas.jpg" autoplay muted loop playsinline preload="metadata"></video>
+      <p class="hl-cap">The Fellas — Fashion Event</p>
+    </div>
+    <div class="hl-unit">
+      <video src="./site_assets/figma/hl_goodfellas.mp4" poster="./site_assets/figma/hl_goodfellas.jpg" autoplay muted loop playsinline preload="metadata"></video>
+      <p class="hl-cap">GoodFellas — Live Classic Jazz</p>
+    </div>
+    <div class="hl-unit">
+      <video src="./site_assets/figma/hl_captain.mp4" poster="./site_assets/figma/hl_captain.jpg" autoplay muted loop playsinline preload="metadata"></video>
+      <p class="hl-cap">The Captain — Photo Spot &amp; Afternoon Tea</p>
+    </div>
+  </div>
+</div>
+
+<!-- Creator System: ANUAJAR -->
+<div class="block block-gap">
+  <img loading="lazy" src="./site_assets/figma/dome_creator1.jpg" alt="Creator System — ANUAJAR cross-platform campaign, 39.6K+ views, 2K+ engagements">
+</div>
+
+<!-- Creator System: CHARLES_N_TONIC -->
+<div class="block">
+  <img loading="lazy" src="./site_assets/figma/dome_creator2.jpg" alt="Creator System — CHARLES_N_TONIC cross-platform campaign, 8.7K+ views, IG 2.82% ER, XHS 5.29% ER">
+</div>
+
+<!-- Creator System: ANNI -->
+<div class="block">
+  <img loading="lazy" src="./site_assets/figma/dome_creator3.jpg" alt="Creator System — ANNI cross-platform campaign, 2.1K+ views, IG 9.76% ER, XHS 6.41% ER">
+</div>
+
+<!-- Other Creators: RED creators + aggregate data -->
+<div class="block block-gap">
+  <img loading="lazy" src="./site_assets/figma/dome_other.jpg" alt="Other Creators — RED creator profiles, combined 89.6K followers and 578K likes & saves">
+</div>
+
+<!-- Other Creators: Global vs China + closing statement -->
+<div class="block">
+  <img loading="lazy" src="./site_assets/figma/dome_global_red.jpg" alt="Creator ecosystems — Global Instagram TikTok YouTube vs China RED, and the matching philosophy">
+</div>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Looking to launch your brand overseas?</h2>
+  <p>Let's discuss how we can build high-impact creative pipelines and lean validation frameworks for your next product launch.</p>
+  <div class="cta-row">
+    <a class="btn btn-solid" href="mailto:jingyiw379@gmail.com">Get In Touch</a>
+    <a class="btn btn-outline" href="./case-ai.html">View Next Case Study</a>
+  </div>
+</section>
+
+<footer>
+  JENNY WU · PLAY · CREATE · KEEP · 2026
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+<div class="lightbox" id="lightbox"><img alt=""></div>
+
+<script>
+  /* Scroll reveal */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.section, .block, .brief').forEach(el => {
+    el.classList.add('rv'); io.observe(el);
+  });
+
+  /* Lightbox */
+  const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('img');
+  document.querySelectorAll('.section img, .block img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => {
+      lbImg.src = img.src; lbImg.alt = img.alt;
+      lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+  /* Back to top */
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
+  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* Tap highlight videos to unmute / mute */
+  document.querySelectorAll('.hl-grid video').forEach(v => {
+    v.addEventListener('click', () => {
+      v.muted = !v.muted;
+      if (!v.muted) { v.currentTime = 0; v.play(); }
+    });
+  });
+</script>
+
+</body>
+</html>

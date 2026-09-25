@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MuseKey Case — 0→1 Social Media & Content Operations | Jenny Wu</title>
+<meta name="description" content="MuseKey U.S. market entry: 0→1 Instagram operations, paid creative testing and early creator pipeline for a screen-free kids' music hardware launch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F2EB;
+    --card: #FCFAF5;
+    --ink: #2E211A;
+    --muted: #9A8B7B;
+    --accent: #A97C50;
+    --accent-soft: #EDDFCB;
+    --line: #E3D8C7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    font-family: "Inter", -apple-system, "Helvetica Neue", sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  img { display: block; max-width: 100%; }
+  .serif { font-family: "Cormorant Garamond", Georgia, serif; }
+
+  /* ===== Header nav ===== */
+  header {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 10;
+  }
+  .nav-inner {
+    max-width: 1160px; margin: 0 auto; padding: 32px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .back-link {
+    color: var(--cream); text-decoration: none; font-size: 14px; font-weight: 600;
+    letter-spacing: .5px;
+  }
+  .back-link:hover { color: var(--accent-soft); }
+  .nav-links { display: flex; gap: 34px; list-style: none; align-items: center; }
+  .nav-links li { color: var(--cream); font-size: 14px; font-weight: 600; }
+
+  /* ===== Hero ===== */
+  .hero { width: 100%; }
+  .hero img { width: 100%; height: auto; }
+
+  /* ===== Brief ===== */
+  .brief { max-width: 1160px; margin: 0 auto; padding: 80px 40px 60px; }
+  .sec-label {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 12px; font-weight: 600; letter-spacing: 3px; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .sec-label::before { content: ""; width: 32px; height: 1px; background: var(--accent); }
+  .brief-text {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 38px; font-weight: 500; line-height: 1.5; color: var(--ink);
+    max-width: 1160px;
+  }
+
+  /* ===== Sections ===== */
+  .section { max-width: 1160px; margin: 0 auto; padding: 60px 40px; }
+  .sec-kicker {
+    font-size: 14px; font-weight: 600; letter-spacing: 3px; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .sec-title {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 30px; font-weight: 500; color: var(--ink); margin-bottom: 8px;
+  }
+  .sec-sub {
+    font-size: 20px; font-weight: 600; color: var(--ink);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 32px;
+  }
+  .center { text-align: center; }
+  .center .sec-title { margin-bottom: 24px; }
+
+  /* ===== Gallery ===== */
+  .gallery-img { margin: 0 auto; border-radius: 8px; overflow: hidden; }
+  .gallery-img img { width: 100%; height: auto; }
+
+  /* ===== 3-col ad creative ===== */
+  .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .col-img { border-radius: 8px; overflow: hidden; margin-bottom: 24px; }
+  .col-img img { width: 100%; height: auto; }
+  .col-label {
+    font-size: 13px; font-weight: 600; letter-spacing: 2px; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .col-desc { font-size: 14px; line-height: 1.7; color: var(--ink); }
+  .col-desc p { margin-bottom: 16px; }
+  .col-desc .result { font-weight: 600; }
+
+  /* ===== Phone mockup ===== */
+  .phone-stage {
+    display: flex; flex-direction: column; align-items: center;
+    margin-top: 24px;
+  }
+  .phone {
+    position: relative; height: 600px; padding: 11px;
+    background: linear-gradient(165deg, #FBF7F0, #F0E8DA);
+    border-radius: 46px;
+    box-shadow:
+      0 32px 80px rgba(33,29,23,.22),
+      0 4px 16px rgba(33,29,23,.1),
+      inset 0 0 0 1.5px rgba(46,33,26,.5);
+    transition: transform .5s cubic-bezier(.16,1,.3,1);
+  }
+  .phone:hover { transform: translateY(-8px) rotate(-.6deg); }
+  .phone img {
+    height: 100%; width: auto; border-radius: 35px; display: block;
+    box-shadow: inset 0 0 0 1px rgba(46,33,26,.35);
+  }
+  .phone-island {
+    position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
+    width: 88px; height: 24px; background: #2E211A; border-radius: 999px; z-index: 2;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.08);
+  }
+  .phone-shadow {
+    width: 65%; height: 28px; margin-top: -14px;
+    background: radial-gradient(ellipse at center, rgba(33,29,23,.22), transparent 70%);
+  }
+  @media (max-width: 700px) {
+    .phone { height: 480px; }
+  }
+
+  /* ===== Triptych video gallery ===== */
+  .triptych {
+    display: flex; gap: 24px; align-items: center; justify-content: center;
+    margin-top: 32px;
+  }
+  .triptych video {
+    width: auto; object-fit: cover; cursor: pointer;
+    border-radius: 16px; box-shadow: 0 12px 40px rgba(33,29,23,.15);
+    transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
+  }
+  .triptych video:hover { transform: translateY(-6px); box-shadow: 0 18px 52px rgba(33,29,23,.22); }
+  .triptych .main { height: 540px; }
+  .triptych .side { height: 400px; }
+  .h-hint { font-size: 12px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-top: 20px; text-align: center; }
+  @media (max-width: 900px) {
+    .triptych { gap: 12px; }
+    .triptych .main { height: 340px; }
+    .triptych .side { height: 250px; }
+  }
+
+  /* ===== Lightbox ===== */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 200; display: none;
+    background: rgba(30,24,18,.92); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; animation: lbIn .25s ease; }
+  @keyframes lbIn { from { opacity: 0; } to { opacity: 1; } }
+  .lightbox img { max-width: 92vw; max-height: 92vh; border-radius: 8px; box-shadow: 0 24px 80px rgba(0,0,0,.4); }
+
+  /* ===== Scroll reveal ===== */
+  .rv { opacity: 0; transform: translateY(32px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .rv.on { opacity: 1; transform: none; }
+
+  /* ===== Back to top ===== */
+  .to-top {
+    position: fixed; right: 28px; bottom: 28px; z-index: 100;
+    width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);
+    background: var(--card); color: var(--ink); font-size: 18px; cursor: pointer;
+    opacity: 0; pointer-events: none; transition: opacity .3s, background .2s, color .2s;
+    box-shadow: 0 4px 16px rgba(33,29,23,.1);
+  }
+  .to-top.show { opacity: 1; pointer-events: auto; }
+  .to-top:hover { background: var(--ink); color: var(--cream); }
+
+  /* ===== CTA ===== */
+  .cta { text-align: center; padding: 120px 40px 100px; }
+  .cta h2 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 38px; font-weight: 500; margin-bottom: 20px;
+  }
+  .cta p { font-size: 12px; color: var(--muted); max-width: 600px; margin: 0 auto 40px; }
+  .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 16px 32px; font-size: 14px; font-weight: 600;
+    letter-spacing: 1px; text-decoration: none; border-radius: 999px; cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .btn-solid { background: var(--ink); color: var(--cream); border: 1px solid var(--ink); }
+  .btn-solid:hover { background: var(--accent); border-color: var(--accent); }
+  .btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .btn-outline:hover { background: var(--ink); color: var(--cream); }
+
+  /* ===== Footer ===== */
+  footer {
+    text-align: center; padding: 40px; font-size: 12px; color: var(--muted);
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .cols-3 { grid-template-columns: 1fr; gap: 48px; }
+    .brief-text { font-size: 28px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a class="back-link" href="./JennyWu_Website.html#cases">← Back to work</a>
+    <ul class="nav-links">
+      <li>Musekey Case</li>
+      <li>01 / 04</li>
+    </ul>
+  </div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <img src="./site_assets/figma/mk_hero.jpg" alt="MuseKey case study — 0→1 Social Media & Content Operations for a Kids' Hardware U.S. Launch">
+</div>
+
+<!-- The Brief -->
+<section class="brief">
+  <p class="sec-label">The Brief</p>
+  <p class="brief-text">For a screen-free music toy entering the U.S. market, the first job was not more ads — it was building a credible, human brand presence on Instagram. I owned the 0→1 social operation: content pillars, posting rhythm, creator outreach and visual production, with Meta paid experiments running as a supporting lever to validate audiences and move from leads to $1 Super Early Bird deposits.</p>
+</section>
+
+<!-- Content Gallery: phone mockup -->
+<section class="section">
+  <p class="sec-kicker">Creative Assets</p>
+  <h2 class="sec-title">Content Gallery</h2>
+  <p class="sec-sub">Main Page</p>
+  <div class="phone-stage">
+    <div class="phone">
+      <div class="phone-island"></div>
+      <img loading="lazy" src="./site_assets/figma/mk_gallery_grid.jpg" alt="MuseKey Instagram content grid — main page posts">
+    </div>
+    <div class="phone-shadow"></div>
+  </div>
+</section>
+
+<!-- Top Performing Posts: triptych — center video large, sides equal -->
+<section class="section">
+  <h2 class="sec-title">Top Performing Posts</h2>
+  <div class="triptych">
+    <video class="side" src="./site_assets/figma/mk_vid_left.mp4" poster="./site_assets/figma/mk_vid_left.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    <video class="main" src="./site_assets/figma/mk_vid_center.mp4" poster="./site_assets/figma/mk_vid_center.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    <video class="side" src="./site_assets/figma/mk_vid_right.mp4" poster="./site_assets/figma/mk_vid_right.jpg" autoplay muted loop playsinline preload="metadata"></video>
+  </div>
+  <p class="h-hint">Tap a video to unmute</p>
+</section>
+
+<!-- Top ad creative -->
+<section class="section">
+  <p class="sec-kicker">Paid Creative Gallery</p>
+  <h2 class="sec-title">Top ad creative</h2>
+  <div class="cols-3" style="margin-top: 48px;">
+    <div>
+      <div class="col-img"><img loading="lazy" src="./site_assets/figma/mk_ad_sample.jpg" alt="MuseKey lifestyle-led ad creative"></div>
+      <p class="col-label">Sample Image</p>
+      <div class="col-desc">
+        <p>Lifestyle-led creative focused on screen-free music creation.</p>
+        <p class="result">Results：254 Leads · ¥12.06 Cost per Lead · 4.19% Link CTR · ¥3.77 Cost per Link Click</p>
+        <p>Insight: The lifestyle-led static creative generated 254 leads at a ¥12.06 CPL, validating the potential of positioning MuseKey around everyday creativity and screen-free play rather than leading with AI technology.</p>
+      </div>
+    </div>
+    <div>
+      <div class="col-img"><img loading="lazy" src="./site_assets/figma/mk_ad_brick.jpg" alt="MuseKey brick and sample ad creative test"></div>
+      <p class="col-label">Brick / Sample</p>
+      <div class="col-desc">
+        <p>Testing different visual hooks to identify stronger acquisition signals.</p>
+        <p class="result">Brick：56 Leads · ¥9.97 CPL<br>Sample：54 Leads · ¥11.27 CPL · 4.79% Link CTR</p>
+        <p>Insight: Tested different visual approaches and used CTR and CPL to inform the next round of creative development.</p>
+      </div>
+    </div>
+    <div>
+      <div class="col-img"><img loading="lazy" src="./site_assets/figma/mk_ad_intent.jpg" alt="MuseKey purchase intent test creative"></div>
+      <p class="col-label">Purchase Intent Test</p>
+      <div class="col-desc">
+        <p>Testing a lower-friction deposit offer to validate early purchase intent.</p>
+        <p class="result">35 $1 Deposits<br>Early purchase-intent signal<br>↓<br>Full Product Purchase<br>To be measured after launch</p>
+        <p>Insight: Used a $1 deposit campaign to validate early purchase intent beyond lead generation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Early Creator Pipeline -->
+<section class="section">
+  <p class="sec-kicker">Creator Collaboration</p>
+  <h2 class="sec-title">Early Creator Pipeline</h2>
+  <div class="gallery-img" style="margin: 40px 0 32px;">
+    <img loading="lazy" src="./site_assets/figma/mk_pipeline.jpg" alt="MuseKey early creator outreach pipeline — confirmed UGC creators">
+  </div>
+  <div class="cols-3">
+    <div class="col-img"><img loading="lazy" src="./site_assets/figma/mk_dm1.jpg" alt="Creator DM conversation — seed family onboarding"></div>
+    <div class="col-img"><img loading="lazy" src="./site_assets/figma/mk_dm2.jpg" alt="Creator DM conversation — product introduction"></div>
+    <div class="col-img"><img loading="lazy" src="./site_assets/figma/mk_dm3.jpg" alt="Creator DM conversation — first 30 families confirmation"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Looking to launch your brand overseas?</h2>
+  <p>Let's discuss how we can build high-impact creative pipelines and lean validation frameworks for your next product launch.</p>
+  <div class="cta-row">
+    <a class="btn btn-solid" href="mailto:jingyiw379@gmail.com">Get In Touch</a>
+    <a class="btn btn-outline" href="./case-topjob.html">View Next Case Study</a>
+  </div>
+</section>
+
+<footer>
+  JENNY WU · PLAY · CREATE · KEEP
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+<div class="lightbox" id="lightbox"><img alt=""></div>
+
+<script>
+  /* Scroll reveal */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.section, .block, .brief').forEach(el => {
+    el.classList.add('rv'); io.observe(el);
+  });
+
+  /* Lightbox: click any content image to zoom */
+  const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('img');
+  document.querySelectorAll('.h-gallery img, .gallery-img img, .col-img img, .cols-3 .col-img img').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+  /* Back to top */
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
+  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* Triptych videos: tap to unmute / mute */
+  document.querySelectorAll('.triptych video').forEach(v => {
+    v.addEventListener('click', () => {
+      v.muted = !v.muted;
+      if (!v.muted) { v.currentTime = 0; v.play(); }
+    });
+  });
+</script>
+
+</body>
+</html>

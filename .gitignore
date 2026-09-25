@@ -1,0 +1,8 @@
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# WorkBuddy workspace files
+/.workbuddy/
+/.wbapp_*

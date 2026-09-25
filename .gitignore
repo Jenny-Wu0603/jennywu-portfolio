@@ -6,3 +6,8 @@ desktop.ini
 # WorkBuddy workspace files
 /.workbuddy/
 /.wbapp_*
+
+# Private: job-search notes and third-party confidential material (must never be published)
+/archive/workbuddy/
+/cv/VIVAIA_Brand_Book.pdf
+/cv/vivaia_text.txt

@@ -138,27 +138,23 @@
   }
   .h-hint { font-size: 12px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; text-align: center; }
 
-  /* ===== Macro triptych: card + post | video | card + post ===== */
-  .macro-tri { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 8px; align-items: start; }
+  /* ===== Macro duo: profile card + post/reel, two columns ===== */
+  /* Left column sits 86px further left than a centred pair; the right column stays where it was */
+  .macro-tri {
+    display: grid; grid-template-columns: 1fr 1fr; column-gap: 110px; row-gap: 24px; align-items: start;
+    max-width: 798px; margin: 8px auto 0 max(0px, calc((100% - 712px) / 2 - 86px));
+  }
   .macro-col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-  .macro-card img, .macro-media img {
+  .macro-card img, .macro-media img, .macro-media video {
     width: 100%; border-radius: 14px; display: block;
     box-shadow: 0 8px 26px rgba(33,29,23,.12);
     transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
   }
-  .macro-card img:hover, .macro-media img:hover { transform: translateY(-4px); box-shadow: 0 14px 38px rgba(33,29,23,.17); }
-  .macro-center { align-items: stretch; }
-  .macro-center video {
-    width: 100%; height: auto; border-radius: 14px; cursor: pointer; display: block;
-    box-shadow: 0 10px 32px rgba(33,29,23,.16);
-    transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
-  }
-  .macro-center video:hover { transform: translateY(-4px); box-shadow: 0 16px 44px rgba(33,29,23,.22); }
-  .macro-center .h-hint { margin-top: 14px; }
-  .macro-name { font-size: 14px; font-weight: 600; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; text-align: center; margin-top: 2px; }
-  @media (max-width: 900px) {
-    .macro-tri { grid-template-columns: 1fr; }
-    .macro-center { max-width: 340px; margin: 0 auto; width: 100%; }
+  /* Matches tj_jodi_post.jpg (828x1438) so both columns end level */
+  .macro-media video { height: auto; aspect-ratio: 828 / 1438; object-fit: cover; cursor: pointer; }
+  .macro-card img:hover, .macro-media img:hover, .macro-media video:hover { transform: translateY(-4px); box-shadow: 0 14px 38px rgba(33,29,23,.17); }
+  @media (max-width: 700px) {
+    .macro-tri { grid-template-columns: 1fr; max-width: 340px; margin: 8px auto 0; }
   }
   @media (max-width: 700px) {
     .phone { height: 430px; }
@@ -241,10 +237,7 @@
   <div class="macro-tri">
     <div class="macro-col">
       <div class="macro-card"><img loading="lazy" src="./assets/topjob/tj_card_michael.jpg" alt="Michael Soledad — Instagram profile, 93.9K followers"></div>
-      <div class="macro-media"><img loading="lazy" src="./assets/topjob/tj_post_michael.jpg" alt="Michael Soledad sponsored post for TopJob Napa Ergonomic Chair"></div>
-    </div>
-    <div class="macro-col macro-center">
-      <video src="./assets/topjob/tj_reel.mp4" poster="./assets/topjob/tj_reel.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Creator Reel by michasoledesign and topjoblab"></video>
+      <div class="macro-media"><video src="./assets/topjob/tj_reel.mp4" poster="./assets/topjob/tj_reel.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Creator Reel by michasoledesign and topjoblab"></video></div>
     </div>
     <div class="macro-col">
       <div class="macro-card"><img loading="lazy" src="./assets/topjob/tj_card_jodi.jpg" alt="Jodi Go — Instagram profile, 427K followers"></div>
@@ -328,7 +321,7 @@
   toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
   /* Tap video to unmute / mute */
-  document.querySelectorAll('.macro-center video').forEach(v => {
+  document.querySelectorAll('.macro-media video').forEach(v => {
     v.addEventListener('click', () => {
       v.muted = !v.muted;
       if (!v.muted) { v.currentTime = 0; v.play(); }

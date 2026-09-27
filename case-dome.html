@@ -454,14 +454,20 @@
         margin-top: 10px;
       }
       @media (max-width: 700px) {
+        /* Profile photo full-width on its own row; video + RED grid side by side below */
         .creator-row {
-          grid-template-columns: 1fr;
-          max-width: 273px;
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 16px;
+          row-gap: 16px;
+          max-width: 400px;
           margin-left: auto;
           margin-right: auto;
         }
+        .creator-row img:first-child {
+          grid-column: 1 / -1;
+        }
         .creator-hint {
-          grid-column: 1;
+          grid-column: 1 / -1;
         }
       }
 

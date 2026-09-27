@@ -148,6 +148,17 @@
     .triptych .main { height: 340px; }
     .triptych .side { height: 250px; }
   }
+  @media (max-width: 700px) {
+    /* Scroll sideways within the row instead of the whole page overflowing horizontally */
+    .triptych {
+      justify-content: flex-start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+      padding-bottom: 10px;
+    }
+    .triptych video { flex: 0 0 auto; scroll-snap-align: center; }
+  }
 
   /* ===== Quad row: four evenly-spaced videos ===== */
   .quad-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 32px; }

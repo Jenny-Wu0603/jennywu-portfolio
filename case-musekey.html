@@ -149,6 +149,20 @@
     .triptych .side { height: 250px; }
   }
 
+  /* ===== Quad row: four evenly-spaced videos ===== */
+  .quad-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 32px; }
+  .quad-row video {
+    width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; cursor: pointer;
+    border-radius: 16px; box-shadow: 0 12px 40px rgba(33,29,23,.15);
+    transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
+  }
+  .quad-row video:hover { transform: translateY(-6px); box-shadow: 0 18px 52px rgba(33,29,23,.22); }
+  .quad-hint { grid-column: 2 / 4; }
+  @media (max-width: 700px) {
+    .quad-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .quad-hint { grid-column: 1 / 3; }
+  }
+
   /* ===== Lightbox ===== */
   .lightbox {
     position: fixed; inset: 0; z-index: 200; display: none;
@@ -253,6 +267,18 @@
   <p class="h-hint">Tap a video to unmute</p>
 </section>
 
+<!-- Various Types of Content: four evenly-spaced videos -->
+<section class="section">
+  <h2 class="sec-title">Various Types of Content</h2>
+  <div class="quad-row">
+    <video src="./assets/musekey/mk_vid_various1.mp4" poster="./assets/musekey/mk_vid_various1.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    <video src="./assets/musekey/mk_vid_various2.mp4" poster="./assets/musekey/mk_vid_various2.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    <video src="./assets/musekey/mk_vid_various3.mp4" poster="./assets/musekey/mk_vid_various3.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    <video src="./assets/musekey/mk_vid_various4.mp4" poster="./assets/musekey/mk_vid_various4.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    <p class="h-hint quad-hint">Tap a video to unmute</p>
+  </div>
+</section>
+
 <!-- Top ad creative -->
 <section class="section">
   <p class="sec-kicker">Paid Creative Gallery</p>
@@ -348,8 +374,8 @@
   }, { passive: true });
   toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-  /* Triptych videos: tap to unmute / mute */
-  document.querySelectorAll('.triptych video').forEach(v => {
+  /* Triptych + quad-row videos: tap to unmute / mute */
+  document.querySelectorAll('.triptych video, .quad-row video').forEach(v => {
     v.addEventListener('click', () => {
       v.muted = !v.muted;
       if (!v.muted) { v.currentTime = 0; v.play(); }

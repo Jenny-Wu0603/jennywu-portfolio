@@ -144,6 +144,26 @@
     .hl-unit { width: calc(50% - 10px); }
   }
 
+  /* ===== Creator System: profile card + video + RED grid ===== */
+  .h-hint { font-size: 12px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; text-align: center; }
+  /* Fixed-width 273px columns keep each photo at its native resolution (crisp, no upscaling). */
+  .creator-row { display: grid; grid-template-columns: repeat(3, 273px); justify-content: start; column-gap: 48px; row-gap: 20px; margin-top: 32px; }
+  .creator-row img, .creator-row video {
+    display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover;
+    border-radius: 8px; box-shadow: 0 8px 26px rgba(33,29,23,.12);
+    transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
+  }
+  .creator-row video { cursor: pointer; }
+  .creator-row img:hover, .creator-row video:hover { transform: translateY(-4px); box-shadow: 0 14px 38px rgba(33,29,23,.17); }
+  .creator-hint { grid-column: 2; margin-top: 0; }
+  .creator-cap { font-size: 16px; font-weight: 600; margin-top: 28px; }
+  .creator-stats { font-family: "Cormorant Garamond", Georgia, serif; font-size: 34px; font-weight: 600; color: var(--accent); margin-top: 4px; }
+  .creator-desc { font-size: 17px; color: var(--ink); max-width: 900px; margin-top: 10px; }
+  @media (max-width: 700px) {
+    .creator-row { grid-template-columns: 1fr; max-width: 273px; margin-left: auto; margin-right: auto; }
+    .creator-hint { grid-column: 1; }
+  }
+
   .cta { text-align: center; padding: 120px 40px 100px; }
   .cta h2 {
     font-family: "Cormorant Garamond", Georgia, serif;
@@ -284,8 +304,19 @@
 </div>
 
 <!-- Creator System: ANUAJAR -->
-<div class="block block-gap">
-  <img loading="lazy" src="./assets/dome/dome_creator1.jpg" alt="Creator System — ANUAJAR cross-platform campaign, 39.6K+ views, 2K+ engagements">
+<div class="phone-block block-gap">
+  <p class="sec-kicker" style="font-size:14px; font-weight:600; letter-spacing:3px; color:var(--muted); text-transform:uppercase; margin-bottom:8px;">Creator Collaboration</p>
+  <h2 class="sec-title" style="font-family:'Cormorant Garamond',Georgia,serif; font-size:30px; font-weight:500; margin-bottom:8px;">Creator System</h2>
+  <p class="sec-sub" style="font-size:15px; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin:20px 0 0;">Find the right people. Make them tell a scene, not read a menu. Map every post to its job.</p>
+  <div class="creator-row">
+    <img loading="lazy" src="./assets/dome/dome_creator1_aniajar.jpg" alt="aniajar Instagram profile — Anna Kano, fashion model, 102K followers">
+    <video src="./assets/dome/dome_creator1_video.mp4" poster="./assets/dome/dome_creator1_video.jpg" autoplay muted loop playsinline preload="metadata" aria-label="aniajar POV video — found a hidden Bund doorway to creative omakase"></video>
+    <img loading="lazy" src="./assets/dome/dome_creator1_red.jpg" alt="aniajar RED (Xiaohongshu) content grid">
+    <p class="h-hint creator-hint">Tap the video to unmute</p>
+  </div>
+  <p class="creator-cap">ANUAJAR | Cross-platform Creator Campaign</p>
+  <p class="creator-stats">39.6K+ views · 2K+ engagements · 1.8K+ likes</p>
+  <p class="creator-desc">Activated creator content across Instagram and REDNOTE, reaching overseas audiences and Shanghai-based lifestyle travelers through a Bund dining experience.</p>
 </div>
 
 <!-- Creator System: CHARLES_N_TONIC -->
@@ -337,7 +368,7 @@
   /* Lightbox */
   const lb = document.getElementById('lightbox');
   const lbImg = lb.querySelector('img');
-  document.querySelectorAll('.section img, .block img').forEach(img => {
+  document.querySelectorAll('.section img, .block img, .creator-row img').forEach(img => {
     img.style.cursor = 'zoom-in';
     img.addEventListener('click', () => {
       lbImg.src = img.src; lbImg.alt = img.alt;
@@ -355,7 +386,7 @@
   toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
   /* Tap highlight videos to unmute / mute */
-  document.querySelectorAll('.hl-grid video').forEach(v => {
+  document.querySelectorAll('.hl-grid video, .creator-row video').forEach(v => {
     v.addEventListener('click', () => {
       v.muted = !v.muted;
       if (!v.muted) { v.currentTime = 0; v.play(); }
